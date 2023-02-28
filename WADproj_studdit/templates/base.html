@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <header></header>
-    <main></main>
-    <footer></footer>
-  </body>
+{% load staticfiles %}
+
+<html>
+    <head>
+        <title>
+            {% block title_block %}
+                PLACEHOLDER
+            {% endblock %}
+        </title>
+    </head>
+    <body>
+        <div>
+        {% block body_block %}
+        {% endblock %}
+        </div>
+    </body>
 </html>
