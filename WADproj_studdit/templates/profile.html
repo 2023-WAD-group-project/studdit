@@ -1,11 +1,129 @@
 {% extends "base.html" %}
-
+{% load staticfiles %}
 
 {% block title_block %}
     Profile
 {% endblock %}
 
+{%block extra_head_block %}
+    <link rel="stylesheet" href="{% static "css/profile.css" %}" />
+    <!-- <style> body { background-color: green; } </style> -->
+{% endblock %}
 
 {% block body_block %}
-  this is your profile page
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col">
+      <div class="container" style="background-color: blue">
+
+        <div class="container" style="background-color: lime">
+
+          <div class="container row" style="background-color: lime">
+            <div class="col">
+              <div class="row border">
+                <h3>ACCOUNT USERNAME:</h3>
+                <h4>nam</h4>
+              </div>
+              <div class="row border">
+                <h3>ACCOUNT EMAIL:</h3>
+                <h4>1234567B@student.gla.ac.uk</h4>
+              </div>
+            </div>
+            <div class="col-  border">
+              <form>
+                <h3>CHANGE USERNAME</h3>
+                <h4>desired username:</h4>
+                <input type="text" class="form-control" id="username" placeholder="username" required="">
+                <button class="btn-primary" type="submit">change</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col border">
+              <form>
+                <h3>CHANGE PASSWORD</h3>
+                <div class="container">
+                  <div class="row">
+                    <div class="col">
+                      <h4>previous password:</h4>
+                      <input type="text" class="form-control" id="username" placeholder="********" required="">
+                    </div>
+                    <div class="col">
+                      <h4>new password:</h4>
+                      <input type="text" class="form-control" id="username" placeholder="********" required="">
+                    </div>
+                  </div>
+                    <button class="btn-primary" type="submit">change</button>
+                </div>
+              </form>
+            </div>
+            <div class="col border">
+              <form>
+                <h3>REQUEST A NEW COURSE PAGE</h3>
+                <div class="container">
+                  <div class="row">
+                    <div class="col">
+                      <h4>course code:</h4>
+                      <input type="text" class="form-control" id="username" placeholder="COMPSCI1001" required="">
+                    </div>
+                    <div class="col">
+                      <h4>course title:</h4>
+                      <input type="text" class="form-control" id="username" placeholder="computing science 1P" required="">
+                    </div>
+                  </div>
+                  <button class="btn-primary" type="submit">request</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="row border">
+            <div>
+              <form style="display: inline">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-">
+                      <button class="btn-danger" type="submit" style="display: inline">DELETE<br />ACCOUNT</button>
+                    </div>
+                    <div class="col">
+                      <p style="display: inline">DISCLAIMER: deleting your account will ireversably delete your comments, posts, username, email, and encrypted password from out database.</p>
+                      <p style="display: inline; color: red">they will not be recoverable.</p>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <span class="col- border-left"></span>
+
+    <div class="col-">
+
+      <div class="container">
+        <h3>my posts:</h3>
+        <div class="col"> <!--<div class="card-columns">-->
+        {% for i in '0123456789'|make_list %} {# TODO: change this for loop to be for course in courses (when the course database actually exists) #}
+          <div class="card-columns">
+            <div class="card bg-secondary text-white text-center p-3">
+              <button class="btn-danger float-left">DELETE</button>
+              <button class="btn-light float-right" disabled>votes: xx</button>
+              <br />
+              <h3>a typically very long post title</h3>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 {% endblock %}
