@@ -7,6 +7,8 @@
 4. now just run the server via "python manage.py runserver"
 
 
-# TODO
+# week 2 TODO
+- [ ] database
 - [ ] database population script
 - [ ] unit tests
+- [ ] seperate out CSS & JS from html
