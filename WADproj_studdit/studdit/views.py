@@ -19,6 +19,7 @@ def post(request):
     
 
     context_dict = {}
+    
     return render(request, "post.html", context=context_dict)
 
 def login(request):

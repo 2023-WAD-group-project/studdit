@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 {% extends "base.html" %}
 {% load staticfiles %}
 
@@ -6,10 +7,82 @@
     Post
 {% endblock %}
 
+{%block extra_head_block %}
+    <link rel="stylesheet" href="{% static "css/post.css" %}" />
+    <!-- <style> body { background-color: green; } </style> -->
+{% endblock %}
+
 
 {% block body_block %}
 <div class = "container-fluid">
-  <img src="{% static "images/image.jpg" %}" alt="Picture of Rango" />
+  <img src="{% static "images/cat.jpg" %}" width="100%" height="500"/>
+  <div class="well">
+    <script>
+      const minusButton = document.getElementById('minus');
+const plusButton = document.getElementById('plus');
+const inputField = document.getElementById('input');
+
+minusButton.addEventListener('click', event => {
+  event.preventDefault();
+  const currentValue = Number(inputField.value) || 0;
+  inputField.value = currentValue - 1;
+});
+
+plusButton.addEventListener('click', event => {
+  event.preventDefault();
+  const currentValue = Number(inputField.value) || 0;
+  inputField.value = currentValue + 1;
+});
+    </script>
+    <h2> POST TITLE 
+      
+    <button  disabled>votes: xx</button>
+    <button id="plus2" style="width:30px;">+ </button><button id="minus2" style="width:30px;">− </button>
+    <button type="submit" class="float-right">open for download</button>
+    </h2>
+  </h2>
+  <h3>
+    Some stuff about the post will go here.  Some stuff about the post will go here.  Some stuff about the post will go here.  Some stuff about the post will go here.
+    
+    
+    
+
+  </h3>
+  </div>
+
+  <hr class="solid">
+
+  <div class="well">
+    <input type="search" id="site-search" name="search" placeholder="comment..." size="215">
+
+  <button class="float-right">comment</button>
+
+  <div class = "scroll">
+    <script>
+      const minusButton2 = document.getElementById('minus2');
+const plusButton2 = document.getElementById('plus2');
+const inputField2 = document.getElementById('input2');
+
+minusButton.addEventListener('click', event => {
+  event.preventDefault();
+  const currentValue = Number(inputField.value) || 0;
+  inputField.value = currentValue - 1;
+});
+
+plusButton.addEventListener('click', event => {
+  event.preventDefault();
+  const currentValue = Number(inputField.value) || 0;
+  inputField.value = currentValue + 1;
+});
+    </script>
+    <ul class="list-group">
+      {% for i in '123456789'|make_list %}
+      
+      <li class="list-group-item">username{{i}} says:  he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says <button id="plus2" style="width:30px;">+ </button><button id="minus2" style="width:30px;">− </button></li>
+      
+      {% endfor %}
+    </ul>
+  </div>
 
 </div>
 
