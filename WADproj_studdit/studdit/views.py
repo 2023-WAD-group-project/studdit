@@ -16,9 +16,7 @@ def course(request):
     return render(request, "course.html", context=context_dict)
 
 def post(request):
-    # note that this view wont be fully completed until we set up the database,
-    # so worry about the other views for now
-    raise Exception("NOT IMPLEMENTED")
+    
 
     context_dict = {}
     return render(request, "post.html", context=context_dict)
