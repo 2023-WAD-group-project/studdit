@@ -16,10 +16,11 @@ def course(request):
     return render(request, "course.html", context=context_dict)
 
 def post(request):
+
     
 
     context_dict = {}
-    
+    context_dict['boldmessage'] = 'Crunchy, creamy, cookie, candy, cupcake!'
     return render(request, "post.html", context=context_dict)
 
 def login(request):

@@ -4,6 +4,7 @@
 
 
 {% block title_block %}
+
     Post
 {% endblock %}
 
@@ -17,28 +18,50 @@
 <div class = "container-fluid">
   <img src="{% static "images/cat.jpg" %}" width="100%" height="500"/>
   <div class="well">
-    <script>
-      const minusButton = document.getElementById('minus');
-const plusButton = document.getElementById('plus');
-const inputField = document.getElementById('input');
-
-minusButton.addEventListener('click', event => {
-  event.preventDefault();
-  const currentValue = Number(inputField.value) || 0;
-  inputField.value = currentValue - 1;
-});
-
-plusButton.addEventListener('click', event => {
-  event.preventDefault();
-  const currentValue = Number(inputField.value) || 0;
-  inputField.value = currentValue + 1;
-});
-    </script>
+    
     <h2> POST TITLE 
+      {%  with boldmessage2="wwww" %}
+      {% endwith %}
       
-    <button  disabled>votes: xx</button>
-    <button id="plus2" style="width:30px;">+ </button><button id="minus2" style="width:30px;">− </button>
+      
+    <button  disabled>votes:<p class="float-right" id="computerScore"> 0 {{boldmessage2 }}</p></button>
+    <button id="myBtn" style="width:30px;">+ </button><button id="myBtn2" style="width:30px;">− </button>
     <button type="submit" class="float-right">open for download</button>
+
+    <script>
+      document.getElementById("myBtn").addEventListener("click", increase);
+      document.getElementById("myBtn2").addEventListener("click", decrease);
+      var votes = document.getElementById('computerScore');
+      counter = 0;
+      pressed1 = false;
+      pressed2 = false;
+      function increase() {
+        
+        pressed2 = false;
+        if (pressed1 == false){
+          counter ++
+
+        }
+        pressed1 = true
+        
+          
+          
+          votes.innerHTML = counter;
+      }
+      
+      function decrease() {
+        pressed1 = false
+        if (pressed2 == false){
+          counter --
+
+        }
+        pressed2 = true;
+        
+          
+          
+          votes.innerHTML = counter;
+      }
+      </script>
     </h2>
   </h2>
   <h3>
