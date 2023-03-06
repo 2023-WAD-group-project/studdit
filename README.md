@@ -10,5 +10,6 @@
 # week 2 TODO
 - [ ] database
 - [ ] database population script
+- [ ] actual functionality of the website
 - [ ] unit tests
-- [ ] seperate out CSS & JS from html
+- [ ] seperate out CSS & JS from html, into seperate .css .js files
