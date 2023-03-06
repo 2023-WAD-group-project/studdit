@@ -20,46 +20,76 @@
   <div class="well">
     
     <h2> POST TITLE 
-      {%  with boldmessage2="wwww" %}
-      {% endwith %}
       
       
-    <button  disabled>votes:<p class="float-right" id="computerScore"> 0 {{boldmessage2 }}</p></button>
+      
+    <button  disabled>votes:<p class="float-right" id="computerScore">0</p></button>
     <button id="myBtn" style="width:30px;">+ </button><button id="myBtn2" style="width:30px;">− </button>
     <button type="submit" class="float-right">open for download</button>
 
     <script>
+      
       document.getElementById("myBtn").addEventListener("click", increase);
       document.getElementById("myBtn2").addEventListener("click", decrease);
-      var votes = document.getElementById('computerScore');
-      counter = 0;
+      var votes = document.getElementById('computerScore').innerText
+      var votes2 = document.getElementById('computerScore')
+      counter = parseInt(votes);
       pressed1 = false;
       pressed2 = false;
       function increase() {
         
-        pressed2 = false;
+        
+
+        
+        myBtn2.style.backgroundColor = ""
         if (pressed1 == false){
+          myBtn.style.backgroundColor = "green"
           counter ++
+          if (pressed2 == true){
+            counter ++
+            
+          }
+          pressed1 = true
 
         }
-        pressed1 = true
+        else{
+          myBtn.style.backgroundColor = ""
+          counter --
+          pressed1 = false;
+        }
+        pressed2 = false;
+        
         
           
           
-          votes.innerHTML = counter;
+          votes2.innerHTML = counter;
       }
       
       function decrease() {
-        pressed1 = false
+        myBtn.style.backgroundColor = ""
         if (pressed2 == false){
+          myBtn2.style.backgroundColor = "red"
           counter --
+          if(pressed1 == true){
+            counter --
+          }
+          pressed2 = true
+          
 
         }
-        pressed2 = true;
+        else{
+          myBtn2.style.backgroundColor = ""
+          counter ++
+          pressed2 = false
+          
+        }
+        pressed1 = false
+        
+        
         
           
           
-          votes.innerHTML = counter;
+        votes2.innerHTML = counter;
       }
       </script>
     </h2>
@@ -81,30 +111,72 @@
   <button class="float-right">comment</button>
 
   <div class = "scroll">
-    <script>
-      const minusButton2 = document.getElementById('minus2');
-const plusButton2 = document.getElementById('plus2');
-const inputField2 = document.getElementById('input2');
-
-minusButton.addEventListener('click', event => {
-  event.preventDefault();
-  const currentValue = Number(inputField.value) || 0;
-  inputField.value = currentValue - 1;
-});
-
-plusButton.addEventListener('click', event => {
-  event.preventDefault();
-  const currentValue = Number(inputField.value) || 0;
-  inputField.value = currentValue + 1;
-});
-    </script>
+    
     <ul class="list-group">
       {% for i in '123456789'|make_list %}
       
-      <li class="list-group-item">username{{i}} says:  he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says <button id="plus2" style="width:30px;">+ </button><button id="minus2" style="width:30px;">− </button></li>
+      <li class="list-group-item">username{{i}} says:  he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says<button class = "float-right" id="minus2" style="width:30px;">− </button><button class = "float-right" id="plus2" style="width:30px;">+ </button></li>
       
       {% endfor %}
     </ul>
+    <script>
+      document.getElementById("plus2").addEventListener("click", increase1);
+      document.getElementById("minus2").addEventListener("click", decrease2);
+      pressed21 = false;
+      pressed22 = false;
+
+      function increase1() {
+
+        
+        minus2.style.backgroundColor = ""
+if (pressed21 == false){
+  
+  plus2.style.backgroundColor = "green"
+ 
+  
+  pressed21 = true
+
+}
+else{
+  plus2.style.backgroundColor = ""
+  
+  pressed21 = false;
+}
+pressed22 = false;
+
+
+  
+  
+  
+}
+
+function decrease2() {
+  plus2.style.backgroundColor = ""
+if (pressed22 == false){
+  minus2.style.backgroundColor = "red"
+  
+  pressed22 = true
+  
+
+}
+else{
+  minus2.style.backgroundColor = ""
+  
+  pressed22 = false
+  
+}
+pressed21 = false
+
+
+
+  
+  
+  votes.innerHTML = counter;
+}
+
+
+
+    </script>
   </div>
 
 </div>
