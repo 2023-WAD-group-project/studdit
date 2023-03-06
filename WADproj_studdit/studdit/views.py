@@ -1,10 +1,13 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
+from studdit.models import Course
 # Create your views here.
 
 def home(request):
     context_dict = {}
+    context_dict["courses"] = Course.objects.all()
+
     return render(request, "home.html", context=context_dict)
 
 def course(request):

@@ -17,15 +17,13 @@
   <ul class="list-group">
 
     <div>
-      {% for i in '123456'|make_list %}
-
+      {% for course in courses %}
         <div style="border-radius: 25px; background: #A9A9A9		; padding: 20px; width: 270px; height: 180px; float: left;">
-          <h3>Post Title</h3>
-          <p>*Course Code*</p>
+          <h3>{{ course.title }}</h3>
+          <p>{{ course.code }}</p>
           <p>Existing Materials: xx</p>
           <p>Total Likes in This Course: xxxx</p>
         </div>
-    
       {% endfor %}
     </div>
 
