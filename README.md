@@ -13,3 +13,4 @@
 - [ ] actual functionality of the website
 - [ ] unit tests
 - [ ] seperate out CSS & JS from html, into seperate .css .js files
+- [ ] make sure URLs are relative (ie. use the {% url ... %} tag
