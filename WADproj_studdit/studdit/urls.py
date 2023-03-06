@@ -13,5 +13,7 @@ urlpatterns = [
 
     path("login", views.login, name="login"),
 
-    path("profile", views.profile, name="profile")
+    path("profile", views.profile, name="profile"),
+
+    path('course/<slug:course_name_slug>/add_post/', views.add_post, name='add_post'),
 ]
