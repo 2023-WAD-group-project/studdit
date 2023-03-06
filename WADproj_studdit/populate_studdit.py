@@ -52,6 +52,7 @@ def populate():
 
 
     for course_data in courses:
+        
         course = add_course(course_data["code"], course_data["title"])
         for post in course_data["posts"]:
             print(post)

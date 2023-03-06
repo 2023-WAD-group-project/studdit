@@ -1,13 +1,12 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from studdit.models import Post
+from django.views import View
 
-from studdit.models import Course
 # Create your views here.
 
 def home(request):
     context_dict = {}
-    context_dict["courses"] = Course.objects.all()
-
     return render(request, "home.html", context=context_dict)
 
 def course(request):
@@ -19,8 +18,9 @@ def course(request):
     return render(request, "course.html", context=context_dict)
 
 def post(request):
+    name = "dfdf"
     context_dict = {}
-    context_dict['boldmessage'] = 'Crunchy, creamy, cookie, candy, cupcake!'
+    context_dict['namee'] = name
     return render(request, "post.html", context=context_dict)
 
 def login(request):
@@ -72,3 +72,17 @@ def add_post(request, course_name_slug):
 
     context_dict = {'form': form, 'course': course}
     return render(request, 'post.html', context=context_dict)
+
+class LikePostView(View):
+    def get(self, request):
+        post_id = request.GET['anaconda install file']
+        
+        try:
+            post = Post.objects.get(id=str(post_id))
+        except Post.DoesNotExist:
+            return HttpResponse(-1)
+        except ValueError:
+            return HttpResponse(-1)
+        post.likes = post.likes + 1
+        post.save()
+        return HttpResponse(post.likes)

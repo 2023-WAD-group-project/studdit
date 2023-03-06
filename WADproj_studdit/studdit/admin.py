@@ -1,3 +1,5 @@
 from django.contrib import admin
+from studdit.models import Course, Student, Post, Comment
 
-# Register your models here.
+admin.site.register(Course)
+admin.site.register(Post)

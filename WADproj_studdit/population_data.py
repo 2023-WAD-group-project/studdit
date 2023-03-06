@@ -359,7 +359,7 @@ comp_y2 = [
         "title": "Mentoring for Graduate Apprentices COMPSCI 2034 - Mentoring for Graduate Apprentices",
         "posts": [
             {
-                "title": "",
+                "title": "jjj",
                 "filename": "",
                 "description": ""
                 }
