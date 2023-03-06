@@ -85,32 +85,16 @@
 
   <ul class="list-group">
 
-    <div>
-      {% for i in '123456'|make_list %}
-
-        <div style="border-radius: 25px; background: #A9A9A9		; padding: 20px; width: 200px; height: 150px; float: left;">
-          <h3>Post Title</h3>
+    <div class="card-columns">
+      {% for i in '0123456'|make_list %}
+        <div class="card bg-secondary text-white text-center p-3">
+          <button class="btn-danger float-left">DELETE</button>
+          <button class="btn-light float-right" disabled>votes: xx</button>
+          <br />
+          <h3>a typically very long post title</h3>
         </div>
-    
       {% endfor %}
-    </div>
-
-    <br>
-    <br>
-
-    <div>
-      {% for i in '123456'|make_list %}
-
-        <div style="border-radius: 25px; background: #A9A9A9		; padding: 20px; width: 200px; height: 150px; float: left;">
-          <h3>Post Title</h3>
-        </div>
-    
-      {% endfor %}
-    </div>
-    
-    </div>
-
-
+      </div>
 
   </ul>
 
@@ -134,7 +118,7 @@
   </form>
 
   <!-- This is the space between footer and page -->
-  <div style="padding-top: 600px;"></div>
+  <div style="padding-bottom: 50px;"></div>
 </div>
 
 {% endblock %}
