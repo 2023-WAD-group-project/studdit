@@ -2,6 +2,7 @@ from django.urls import path
 from studdit import views
 from studdit.views import LikePostView
 
+
 urlpatterns = [
     path("home", views.home, name="home"),
 
@@ -19,4 +20,5 @@ urlpatterns = [
     path('course/<slug:course_name_slug>/add_post/', views.add_post, name='add_post'),
 
     path('like_post/', LikePostView.as_view(), name='like_post'),
+
 ]

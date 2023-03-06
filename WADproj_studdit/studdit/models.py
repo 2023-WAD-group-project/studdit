@@ -33,3 +33,6 @@ class Comment(models.Model):
     # actual fields
     content = models.CharField(max_length=1024*10, unique=True)
     date = models.DateField(auto_now_add=True) # the auto now add param tells Django to use the date of when this entry is saved
+
+
+

@@ -1,0 +1,4 @@
+> Search: anaconda prompt
+> command: conda activate rango
+> cd into project
+>python manage.py runserver
