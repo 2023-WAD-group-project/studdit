@@ -16,9 +16,6 @@ def course(request):
     return render(request, "course.html", context=context_dict)
 
 def post(request):
-
-    
-
     context_dict = {}
     context_dict['boldmessage'] = 'Crunchy, creamy, cookie, candy, cupcake!'
     return render(request, "post.html", context=context_dict)
@@ -30,3 +27,45 @@ def login(request):
 def profile(request):
     context_dict = {}
     return render(request, "profile.html", context=context_dict)
+
+
+def show_course(request, course_name_slug):
+    context_dict = {}
+
+    try:
+        course = Course.objects.get(slug=course_name_slug)
+        post = Post.objects.filter(course=course)
+        context_dict['posts'] = post
+        context_dict['course'] = course
+    except Course.DoesNotExist:
+        context_dict['course'] = None
+        context_dict['posts'] = None
+    return render(request, 'course.html', context=context_dict)
+
+def add_post(request, course_name_slug):
+    try:
+        course = Course.objects.get(slug=course_name_slug)
+    except Course.DoesNotExist:
+        course = None
+
+    if course is None:
+        return redirect(reverse('home'))
+
+    form = PageForm()
+
+    if request.method == 'POST':
+        form = PageForm(request.POST)
+
+    if form.is_valid():
+        if category:
+            page = form.save(commit=False)
+            page.category = category
+            page.views = 0
+            page.save()
+
+            return redirect(reverse('show_course', kwargs={'course_name_slug': course_name_slug}))
+    else:
+        print(form.errors)
+
+    context_dict = {'form': form, 'course': course}
+    return render(request, 'post.html', context=context_dict)
