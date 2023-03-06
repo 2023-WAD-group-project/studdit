@@ -1,27 +1,72 @@
-<!DOCTYPE html>
 {% load staticfiles %}
 
-<html>
+
+<html lang="en">
     <head>
-        <title>
-            Studdit
-        </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">
+    <title>
+      Login to Studdit
+    </title>
+    
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/4.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/4.2/examples/dashboard/dashboard.css" rel="stylesheet">
     </head>
-    <body>
-        <div class="container-fluid", style="text-align:center">
-            <h3>Login to Studdit</h3>
-            <form (to complete will add at later date)>
-                Username: <input type="text" class="form-control" id="username" value="" size="30" /> 
-                <br />
-                Password: <input type="password" class="from-control" id="password" value="" size="30" /> 
-                <br />
-                <input  type="submit" value="Login"/>
-                <br />
-                <input type="submit" value="Forgot password" />
-                <input type="submit" value="Register" />
-                <br/>
-                Still got lots to fix just made a start at the desgin 
-            </form>
+    <body style="text-align:center">
+      <div class="header bg-dark m-0 p-0">
+        <h1 class="h1 text-white" >Studdit</h2>
+      </div>
+      <div class="container mt-100">
+        <div class="row">
+          <div class="col p-3" ;>
+            <div class="card bg-secondary text-white border-10 ">
+              <form>
+                <h2 class="h2 mb-3  fw-normal">Sign In</h2>
+                <div class="form-floating">
+                  <label for="floatingInput">Email address</label>
+                  <input type="email" class="form-control" id="floatingInput" placeholder="guid@student.gla.ac.uk">
+                </div>
+                <div class="form-floating">
+                  <label for="floatingPassword">Password</label>
+                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                </div>
+                <div class="checkbox mb-3">
+                  <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                  </label>
+                </div>
+                <button class="btn-primary w-100" type="submit">Sign In</button>
+              </form>
+            </div>
+          </div>
+          <div class="col p-3" ;>
+            <div class="card bg-secondary text-white border-10 ">
+              <form >
+                <h2 class="h2 mb-3  fw-normal">Sign Up</h2>
+                <div class="form-floating">
+                  <label for="floatingInput">Email address</label>
+                  <input type="email" class="form-control" id="floatingInput" placeholder="guid@student.gla.ac.uk">
+                </div>
+                <div class="form-floating">
+                  <label for="floatingPassword">Password</label>
+                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                </div>
+                <div class="checkbox mb-3">
+                  <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                  </label>
+                </div>
+                  <button class="btn-primary w-100" type="submit">Sign Up</button>
+              </form>  
+            </div>
+          </div> 
         </div>
+      </div>
     </body>
 </html>
