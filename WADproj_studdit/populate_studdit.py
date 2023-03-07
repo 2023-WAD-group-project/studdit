@@ -57,7 +57,6 @@ def populate():
         for post in course_data["posts"]:
             print(post)
             print(course_data["posts"])
-            print(post)
             add_post(course, post["title"], post["filename"], post["description"])
 
 if __name__ == "__main__":
