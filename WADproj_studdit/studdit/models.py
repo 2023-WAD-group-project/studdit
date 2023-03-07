@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.template.defaultfilters import slugify
+
 
 # Create your models here.
 
@@ -9,8 +11,8 @@ class Student(models.Model):
 class Course(models.Model):
     code = models.CharField(max_length=16, unique=True)
     title = models.CharField(max_length=32)
-    upvoted_by = models.ManyToManyField(Student, related_name='course_upvotedby')
-    downvoted_by = models.ManyToManyField(Student, related_name='course_downvotedby')
+    upvoted_by = models.ManyToManyField(Student, related_name='course_upvotedby', blank=True)
+    downvoted_by = models.ManyToManyField(Student, related_name='course_downvotedby',blank=True)
 
 
 class Post(models.Model):
@@ -22,8 +24,9 @@ class Post(models.Model):
     filename = models.CharField(max_length=128, unique=True)
     description = models.CharField(max_length=1024*10, blank=True)
     date = models.DateField(auto_now_add=True) # the auto now add param tells Django to use the date of when this entry is saved
-    upvoted_by = models.ManyToManyField(Student, related_name='post_upvotedby')
-    downvoted_by = models.ManyToManyField(Student, related_name='post_downvotedby')
+    upvoted_by = models.ManyToManyField(Student, related_name='post_upvotedby',blank = True)
+    downvoted_by = models.ManyToManyField(Student, related_name='post_downvotedby',blank = True)
+    slug = models.SlugField(default="", null=True)
 
 class Comment(models.Model):
     # relational fields

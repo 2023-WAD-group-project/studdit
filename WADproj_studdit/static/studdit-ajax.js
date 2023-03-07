@@ -1,13 +1,13 @@
 $(document).ready(function() {
     $('#upvote').click(function() {
-        var catecategoryIdVar;
-        catecategoryIdVar = $(this).attr('data-categoryid');
+        var postIdVar;
+        postIdVar = $(this).attr('data-postid');
     
-        $.get('/rango/like_category/',
-        {'category_id': catecategoryIdVar},
+        $.get('/rango/like_post/',
+        {'post_id': postIdVar},
         function(data) {
             $('#votes').html(data);
-            $('#like_btn').hide();
+            $('#upvote').hide();
         })
     });
 });

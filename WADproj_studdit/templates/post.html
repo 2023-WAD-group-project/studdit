@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
-{% load staticfiles %}
+{% load static %}
 
 
 {% block title_block %}
@@ -24,8 +24,8 @@
       
       
       
-    <button  disabled>votes:<p class="float-right" id="votes">{{namee}}</p></button>
-    <button id="upvote" data-postid="tttt"  style="width:30px;" type = "button">+ </button><button id="myBtn2" style="width:30px;">− </button>
+    <button  disabled>votes:<p class="float-right" id="votes">{{post.id}}</p></button>
+    <button id="upvote" data-postid="{{ post.id }}"  style="width:30px;" type = "button">+ </button><button id="myBtn2" style="width:30px;">− </button>
     
 
     <script>

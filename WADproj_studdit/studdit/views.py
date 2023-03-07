@@ -18,10 +18,14 @@ def course(request):
     context_dict = {}
     return render(request, "course.html", context=context_dict)
 
-def post(request):
-    name = "dfdf"
+def post(request, slug):
+    post = Post.objects.get(slug=slug)
+
+    
     context_dict = {}
-    context_dict['namee'] = name
+    context_dict['post'] = post
+    
+    
     return render(request, "post.html", context=context_dict)
 
 def login(request):
@@ -76,7 +80,7 @@ def add_post(request, course_name_slug):
 
 class LikePostView(View):
     def get(self, request):
-        post_id = request.GET['anaconda install file']
+        post_id = request.GET['post_id']
         
         try:
             post = Post.objects.get(id=str(post_id))
