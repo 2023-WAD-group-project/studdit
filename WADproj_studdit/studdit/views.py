@@ -51,17 +51,17 @@ def add_post(request, course_name_slug):
     if course is None:
         return redirect(reverse('home'))
 
-    form = PageForm()
+    form = PostForm()
 
     if request.method == 'POST':
-        form = PageForm(request.POST)
+        form = PostForm(request.POST)
 
     if form.is_valid():
-        if category:
-            page = form.save(commit=False)
-            page.category = category
-            page.views = 0
-            page.save()
+        if course:
+            post = form.save(commit=False)
+            post.course = course
+            post.views = 0
+            post.save()
 
             return redirect(reverse('show_course', kwargs={'course_name_slug': course_name_slug}))
     else:
