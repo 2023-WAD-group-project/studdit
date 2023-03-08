@@ -7,13 +7,14 @@ import json
 """
 endpoint docs:
 arguments:
-showempty - will we include courses with no posts?
-title - we should only return courses which have this string in the title.
-format - json or xml?
+showempty - will we include courses with no posts? true/false (default is false)
+title - we should only return courses which have this string in the title. (default is all courses)
+format - json or xml? (default is json)
 """
 
 def get_courses(request):
     arguments = request.GET
+    print(arguments)
 
     courses = Course.objects.filter(title__contains=arguments.get("title", ""))
 
@@ -28,4 +29,5 @@ def get_courses(request):
     elif arguments.get("format", "json") == "xml":
         context_dict = {}
         context_dict["courses"] = courses
+        context_dict["settings"] = dict(arguments).get("xml_fields[]", "title")
         return render(request, 'course_card.html', context=context_dict)

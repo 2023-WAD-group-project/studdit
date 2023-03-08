@@ -26,7 +26,7 @@
       document.getElementById("courses_div").innerHTML = this.responseText;
       }
     };
-    xhttp.open("GET", "get_courses?format=xml", true);
+    xhttp.open("GET", "get_courses?format=xml&xml_fields[]=title&xml_fields[]=code&xml_fields[]=exis_mate&xml_fields[]=likes", true);
     xhttp.send();
   </script>
 
