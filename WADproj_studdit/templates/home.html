@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load staticfiles %}
 
 {% block title_block %}
     Home
@@ -18,12 +18,14 @@
 
     <div>
       {% for course in courses %}
+      <a href="/course/{{course.code}}">
         <div style="border-radius: 25px; background: #A9A9A9		; padding: 20px; width: 270px; height: 180px; float: left;">
           <h3>{{ course.title }}</h3>
           <p>{{ course.code }}</p>
           <p>Existing Materials: xx</p>
           <p>Total Likes in This Course: xxxx</p>
         </div>
+      </a>
       {% endfor %}
     </div>
 
