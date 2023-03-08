@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
-{% load staticfiles %}
+{% load static %}
 
 
 {% block title_block %}
@@ -16,18 +16,27 @@
 
 {% block body_block %}
 <div class = "container-fluid">
-  <img src="{% static "images/cat.jpg" %}" width="100%" height="500"/>
+  
+  <embed src="{% static "images/joo.pdf" %}" type="application/pdf"   height="500" width="100%">
   <div class="well">
     
     <h2> POST TITLE 
       
       
       
-    <button  disabled>votes:<p class="float-right" id="computerScore">0</p></button>
-    <button id="myBtn" style="width:30px;">+ </button><button id="myBtn2" style="width:30px;">− </button>
-    <button type="submit" class="float-right">open for download</button>
+    <button  disabled>votes:<p class="float-right" id="votes">{{post.id}}</p></button>
+    <button id="upvote" data-postid="{{ post.id }}"  style="width:30px;" type = "button">+ </button><button id="myBtn2" style="width:30px;">− </button>
+    
 
     <script>
+      function imgError(image) {
+
+        image.onerror = "";
+        image.src = "https://www.google.com/images/srpr/logo11w.png";
+        return true;
+}
+
+      
       
       document.getElementById("myBtn").addEventListener("click", increase);
       document.getElementById("myBtn2").addEventListener("click", decrease);
@@ -106,7 +115,7 @@
   <hr class="solid">
 
   <div class="well">
-    <input type="search" id="site-search" name="search" placeholder="comment..." size="215">
+    <input type="search" id="site-search" name="search" placeholder="comment..." size="165">
 
   <button class="float-right">comment</button>
 
