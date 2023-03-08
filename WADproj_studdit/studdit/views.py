@@ -23,14 +23,8 @@ def course(request):
     context_dict = {}
     return render(request, "course.html", context=context_dict)
 
-def post(request, slug):
-    post = Post.objects.get(slug=slug)
-
-    
+def post(request):
     context_dict = {}
-    context_dict['post'] = post
-    
-    
     return render(request, "post.html", context=context_dict)
 
 def login(request):
@@ -46,7 +40,7 @@ def show_course(request, course_name_slug):
     context_dict = {}
 
     try:
-        course = Course.objects.get(slug=course_name_slug)
+        course = Course.objects.get(code=course_name_slug)
         post = Post.objects.filter(course=course)
         context_dict['posts'] = post
         context_dict['course'] = course
@@ -57,24 +51,24 @@ def show_course(request, course_name_slug):
 
 def add_post(request, course_name_slug):
     try:
-        course = Course.objects.get(slug=course_name_slug)
+        course = Course.objects.get(code=course_name_slug)
     except Course.DoesNotExist:
         course = None
 
     if course is None:
         return redirect(reverse('home'))
 
-    form = PageForm()
+    form = PostForm()
 
     if request.method == 'POST':
-        form = PageForm(request.POST)
+        form = PostForm(request.POST)
 
     if form.is_valid():
-        if category:
-            page = form.save(commit=False)
-            page.category = category
-            page.views = 0
-            page.save()
+        if course:
+            post = form.save(commit=False)
+            post.course = course
+            post.views = 0
+            post.save()
 
             return redirect(reverse('show_course', kwargs={'course_name_slug': course_name_slug}))
     else:
