@@ -1,0 +1,10 @@
+{% for course in courses %}
+<a href="/course/{{course.code}}">
+  <div class="card bg-secondary text-white text-center p-3">
+    <h3>{{ course.title }}</h3>
+    <p>{{ course.code }}</p>
+    <p>Existing Materials: xx</p>
+    <p>Total Likes in This Course: xxxx</p>
+  </div>
+</a>
+{% endfor %}

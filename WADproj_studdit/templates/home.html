@@ -16,18 +16,18 @@
 
   <ul class="list-group">
 
-    <div>
-      {% for course in courses %}
-      <a href="/course/{{course.code}}">
-        <div style="border-radius: 25px; background: #A9A9A9		; padding: 20px; width: 270px; height: 180px; float: left;">
-          <h3>{{ course.title }}</h3>
-          <p>{{ course.code }}</p>
-          <p>Existing Materials: xx</p>
-          <p>Total Likes in This Course: xxxx</p>
-        </div>
-      </a>
-      {% endfor %}
+    <div class="card-columns" id="courses_div">
     </div>
 
-  
+  <script>
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("courses_div").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "get_courses?format=xml", true);
+    xhttp.send();
+  </script>
+
 {% endblock %}
