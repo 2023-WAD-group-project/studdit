@@ -14,7 +14,6 @@ class Course(models.Model):
     upvoted_by = models.ManyToManyField(Student, related_name='course_upvotedby', blank=True)
     downvoted_by = models.ManyToManyField(Student, related_name='course_downvotedby',blank=True)
 
-
 class Post(models.Model):
     # relational fields
     course = models.ForeignKey(Course, on_delete=models.CASCADE)

@@ -41,7 +41,7 @@ def show_course(request, course_name_slug):
     context_dict = {}
 
     try:
-        course = Course.objects.get(slug=course_name_slug)
+        course = Course.objects.get(code=course_name_slug)
         post = Post.objects.filter(course=course)
         context_dict['posts'] = post
         context_dict['course'] = course
@@ -52,7 +52,7 @@ def show_course(request, course_name_slug):
 
 def add_post(request, course_name_slug):
     try:
-        course = Course.objects.get(slug=course_name_slug)
+        course = Course.objects.get(code=course_name_slug)
     except Course.DoesNotExist:
         course = None
 

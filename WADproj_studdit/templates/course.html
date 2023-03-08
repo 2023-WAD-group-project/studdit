@@ -28,10 +28,10 @@
   <ul class="list-group">
 
     <div class="card-columns">
-      {% for course in courses|make_list %}
+      {% for course in courses %}
             <div class="card bg-secondary text-white text-center p-3">
 
-                <h3>{{course.title}}</h3>
+                <h3>{{course.posts}}</h3>
 
               <button class="btn-light float-right" disabled>votes: xx</button>
               <br />
@@ -46,6 +46,7 @@
   <!-- Post new resource section -->
 
   <h2>Post A New Resource</h2>
+  <h3>{{course.title}}</h3>
 
   <form action="/action_page.php">
     <label for="fname">Resource Title</label><br>
