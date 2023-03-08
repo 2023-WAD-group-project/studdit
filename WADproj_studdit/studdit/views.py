@@ -49,6 +49,19 @@ def show_course(request, course_name_slug):
         context_dict['posts'] = None
     return render(request, 'course.html', context=context_dict)
 
+def post(request):
+    context_dict = {}
+    return render(request, "post.html", context=context_dict)
+
+def login(request):
+    context_dict = {}
+    return render(request, "login.html", context=context_dict)
+
+def profile(request):
+    context_dict = {}
+    return render(request, "profile.html", context=context_dict)
+
+
 def add_post(request, course_name_slug):
     try:
         course = Course.objects.get(code=course_name_slug)

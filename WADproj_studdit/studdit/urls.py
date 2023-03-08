@@ -6,10 +6,7 @@ from studdit.views import LikePostView
 urlpatterns = [
     path("home", views.home, name="home"),
 
-    path("course", views.course, name="course"),
-    # TODO: set up course URL mappings with slugs
-    
-    path('course/<slug:course_name_slug>/', views.show_course,name='show_course'),
+    path('course/<slug:course_name_slug>/', views.show_course, name='show_course'),
 
     #path("post/<slug:slug>", views.post, name="post"), // complete later
 
