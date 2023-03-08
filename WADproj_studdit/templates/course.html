@@ -28,12 +28,14 @@
   <ul class="list-group">
 
     <div class="card-columns">
-      {% for i in '0123456'|make_list %}
-        <div class="card bg-secondary text-white text-center p-3">
-          <button class="btn-light float-right" disabled>votes: xx</button>
-          <br />
-          <h3>a typically very long post title</h3>
-        </div>
+      {% for course in courses|make_list %}
+            <div class="card bg-secondary text-white text-center p-3">
+
+                <h3>{{course.title}}</h3>
+
+              <button class="btn-light float-right" disabled>votes: xx</button>
+              <br />
+            </div>
       {% endfor %}
       </div>
 
