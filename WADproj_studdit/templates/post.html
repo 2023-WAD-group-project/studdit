@@ -1,6 +1,9 @@
-<!DOCTYPE html>
 {% extends "base.html" %}
 {% load static %}
+<!DOCTYPE html>
+
+
+
 
 
 {% block title_block %}
@@ -9,6 +12,7 @@
 {% endblock %}
 
 {%block extra_head_block %}
+    <script src="{% static 'test.js' %}"></script>
     <link rel="stylesheet" href="{% static "css/post.css" %}" />
     <!-- <style> body { background-color: green; } </style> -->
 {% endblock %}
@@ -17,90 +21,18 @@
 {% block body_block %}
 <div class = "container-fluid">
   
-  <embed src="{% static "images/joo.pdf" %}" type="application/pdf"   height="500" width="100%">
+  <embed src="{% static "images/joo.pdf" %}" type="application/pdf"   height="500" width="100%" >
   <div class="well">
     
     <h2> POST TITLE 
       
-      
+    
       
     <button  disabled>votes:<p class="float-right" id="votes">{{post.id}}</p></button>
-    <button id="upvote" data-postid="{{ post.id }}"  style="width:30px;" type = "button">+ </button><button id="myBtn2" style="width:30px;">− </button>
+    <button id="upvote" data-postid="{{ post.id }}"  style="width:30px;" type = "button">+ </button><button id="downvote" style="width:30px;" data-postid="{{ post.id }}">− </button>
     
 
-    <script>
-      function imgError(image) {
-
-        image.onerror = "";
-        image.src = "https://www.google.com/images/srpr/logo11w.png";
-        return true;
-}
-
-      
-      
-      document.getElementById("myBtn").addEventListener("click", increase);
-      document.getElementById("myBtn2").addEventListener("click", decrease);
-      var votes = document.getElementById('computerScore').innerText
-      var votes2 = document.getElementById('computerScore')
-      counter = parseInt(votes);
-      pressed1 = false;
-      pressed2 = false;
-      function increase() {
-        
-        
-
-        
-        myBtn2.style.backgroundColor = ""
-        if (pressed1 == false){
-          myBtn.style.backgroundColor = "green"
-          counter ++
-          if (pressed2 == true){
-            counter ++
-            
-          }
-          pressed1 = true
-
-        }
-        else{
-          myBtn.style.backgroundColor = ""
-          counter --
-          pressed1 = false;
-        }
-        pressed2 = false;
-        
-        
-          
-          
-          votes2.innerHTML = counter;
-      }
-      
-      function decrease() {
-        myBtn.style.backgroundColor = ""
-        if (pressed2 == false){
-          myBtn2.style.backgroundColor = "red"
-          counter --
-          if(pressed1 == true){
-            counter --
-          }
-          pressed2 = true
-          
-
-        }
-        else{
-          myBtn2.style.backgroundColor = ""
-          counter ++
-          pressed2 = false
-          
-        }
-        pressed1 = false
-        
-        
-        
-          
-          
-        votes2.innerHTML = counter;
-      }
-      </script>
+    
     </h2>
   </h2>
   <h3>
@@ -128,64 +60,7 @@
       
       {% endfor %}
     </ul>
-    <script>
-      document.getElementById("plus2").addEventListener("click", increase1);
-      document.getElementById("minus2").addEventListener("click", decrease2);
-      pressed21 = false;
-      pressed22 = false;
-
-      function increase1() {
-
-        
-        minus2.style.backgroundColor = ""
-if (pressed21 == false){
-  
-  plus2.style.backgroundColor = "green"
- 
-  
-  pressed21 = true
-
-}
-else{
-  plus2.style.backgroundColor = ""
-  
-  pressed21 = false;
-}
-pressed22 = false;
-
-
-  
-  
-  
-}
-
-function decrease2() {
-  plus2.style.backgroundColor = ""
-if (pressed22 == false){
-  minus2.style.backgroundColor = "red"
-  
-  pressed22 = true
-  
-
-}
-else{
-  minus2.style.backgroundColor = ""
-  
-  pressed22 = false
-  
-}
-pressed21 = false
-
-
-
-  
-  
-  votes.innerHTML = counter;
-}
-
-
-
-    </script>
+    
   </div>
 
 </div>

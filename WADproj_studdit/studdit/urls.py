@@ -19,6 +19,8 @@ urlpatterns = [
 
     path('course/<slug:course_name_slug>/add_post/', views.add_post, name='add_post'),
 
-    path('like_post/', LikePostView.as_view(), name='like_post'),
+    path('like_post/', views.LikePostView.as_view(), name='like_post'),
+
+    path("test", views.test, name="test"),
 
 ]

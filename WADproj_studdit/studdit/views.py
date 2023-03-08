@@ -10,6 +10,11 @@ def home(request):
     context_dict["courses"] = Course.objects.all()
     return render(request, "home.html", context=context_dict)
 
+def test(request):
+    context_dict = {}
+    return render(request, "test.html", context=context_dict)
+
+
 def course(request):
     # note that this view wont be fully completed until we set up the database,
     # so worry about the other views for now
@@ -80,7 +85,10 @@ def add_post(request, course_name_slug):
 
 class LikePostView(View):
     def get(self, request):
+        print("yellow")
         post_id = request.GET['post_id']
+        like_true = request.GET['like_true']
+        
         
         try:
             post = Post.objects.get(id=str(post_id))
@@ -88,8 +96,7 @@ class LikePostView(View):
             return HttpResponse(-1)
         except ValueError:
             return HttpResponse(-1)
-        post.likes = post.likes + 1
-        post.save()
-        return HttpResponse(post.likes)
+        
+        return HttpResponse()
     
 

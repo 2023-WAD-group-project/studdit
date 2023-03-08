@@ -26,7 +26,7 @@ class Post(models.Model):
     date = models.DateField(auto_now_add=True) # the auto now add param tells Django to use the date of when this entry is saved
     upvoted_by = models.ManyToManyField(Student, related_name='post_upvotedby',blank = True)
     downvoted_by = models.ManyToManyField(Student, related_name='post_downvotedby',blank = True)
-    slug = models.SlugField(default="", null=True)
+    slug = models.SlugField(default="", null=False)
 
 class Comment(models.Model):
     # relational fields
