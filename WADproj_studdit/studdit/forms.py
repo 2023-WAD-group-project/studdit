@@ -19,9 +19,9 @@ class postForm(forms.ModelForm):
     # student the post belongs to
     
     # i think this should work will need to tried
-    course = forms.CharField(max_length=32, widget=forms.Select(choices=courses))
+    course = forms.CharField(max_length=16, widget=forms.Select(choices=courses))
     
-    title = forms.CharField(max_length=32, unique=True)
+    title = forms.CharField(max_length=32)
     description = forms.CharField(max_length=1024*10)
     filename = forms.CharField(max_length=128, widget=forms.HiddenInput())
     
@@ -32,3 +32,4 @@ class postForm(forms.ModelForm):
 
     class Meta:
         model = Post
+        fields = ("course", "title", "description", "filename", "slug")

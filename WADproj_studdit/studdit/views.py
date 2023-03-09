@@ -3,9 +3,13 @@ from django.shortcuts import render, redirect, reverse
 from studdit.models import Post, Course, Student
 from django.views import View
 
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+
 from studdit.forms import UserForm
 # Create your views here.
 
+@login_required
 def home(request):
     context_dict = {}
     context_dict["courses"] = Course.objects.all()
@@ -15,6 +19,7 @@ def test(request):
     context_dict = {}
     return render(request, "test.html", context=context_dict)
 
+@login_required
 def show_course(request, course_name_slug):
     context_dict = {}
 
@@ -28,14 +33,16 @@ def show_course(request, course_name_slug):
         context_dict['posts'] = None
     return render(request, 'course.html', context=context_dict)
 
+@login_required
 def post(request):
     context_dict = {}
     return render(request, "post.html", context=context_dict)
 
-def login(request):
+def login_page(request):
     context_dict = {}
     return render(request, "login.html", context=context_dict)
 
+@login_required
 def profile(request):
     context_dict = {}
     return render(request, "profile.html", context=context_dict)
@@ -85,6 +92,22 @@ class LikePostView(View):
         
         return HttpResponse()
     
+def user_login(request):
+    print("huh")
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+
+        user = authenticate(username=username, password=password)
+
+        if not user:
+            print(f"failed: {username}, {password}")
+            return redirect(reverse("login") + "?failed_login")
+
+        login(request, user)
+        print(f"logged in: {username}, {password}")
+        return redirect(reverse("profile"))
+
 
 def register(request):
     if request.method == "POST":
@@ -99,4 +122,9 @@ def register(request):
             student = Student.objects.get_or_create(user=user)
 
             return redirect(reverse("profile"))
+    return redirect(reverse("login"))
+
+@login_required
+def log_out(request):
+    logout(request)
     return redirect(reverse("login"))

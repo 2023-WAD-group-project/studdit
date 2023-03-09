@@ -16,7 +16,7 @@ urlpatterns = [
 
     #path("add_post", views.add_post, name="add_post"), // need to add Post form to complete
 
-    path("login", views.login, name="login"),
+    path("login", views.login_page, name="login"),
 
     path("profile", views.profile, name="profile"),
 
@@ -29,6 +29,10 @@ urlpatterns = [
     path("get_courses", get_courses, name="API_get_courses"),
 
     # form submission links
-    path("register", views.register, name="register")
+    path("user_login", views.user_login, name="user_login"),
+
+    path("register", views.register, name="register"),
+
+    path("logout", views.log_out, name="logout"),
 
 ]
