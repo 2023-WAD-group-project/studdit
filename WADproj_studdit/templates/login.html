@@ -47,15 +47,20 @@
           </div>
           <div class="col p-3" ;>
             <div class="card bg-secondary text-white border-10 ">
-              <form >
+              <form method="post" action="/register">
+                {% csrf_token %}
                 <h2 class="h2 mb-3  fw-normal">Sign Up</h2>
                 <div class="form-floating">
                   <label for="floatingInput">Email address</label>
-                  <input type="email" class="form-control" id="floatingInput" placeholder="guid@student.gla.ac.uk">
+                  <input type="email" name="email" class="form-control" id="floatingInput" placeholder="guid@student.gla.ac.uk">
                 </div>
                 <div class="form-floating">
                   <label for="floatingPassword">Password</label>
-                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                  <input type="password" name="password"  class="form-control" id="floatingPassword" placeholder="Password">
+                </div>
+                <div class="form-floating">
+                  <label for="floatingPassword">username</label>
+                  <input type="text" name="username"  class="form-control" id="floatingPassword" placeholder="Password">
                 </div>
                 <div class="checkbox mb-3">
                   <label>

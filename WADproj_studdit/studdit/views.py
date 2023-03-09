@@ -1,8 +1,9 @@
 from django.http import HttpResponse
-from django.shortcuts import render
-from studdit.models import Post, Course
+from django.shortcuts import render, redirect, reverse
+from studdit.models import Post, Course, Student
 from django.views import View
 
+from studdit.forms import UserForm
 # Create your views here.
 
 def home(request):
@@ -85,3 +86,17 @@ class LikePostView(View):
         return HttpResponse()
     
 
+def register(request):
+    if request.method == "POST":
+        user_form = UserForm(request.POST)
+
+        if user_form.is_valid():
+            user = user_form.save()
+
+            user.set_password(user.password)
+            user.save()
+
+            student = Student.objects.get_or_create(user=user)
+
+            return redirect(reverse("profile"))
+    return redirect(reverse("login"))

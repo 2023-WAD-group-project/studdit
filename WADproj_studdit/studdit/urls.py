@@ -26,6 +26,9 @@ urlpatterns = [
 
     path("test", views.test, name="test"),
 
-    path("get_courses", get_courses, name="API_get_courses")
+    path("get_courses", get_courses, name="API_get_courses"),
+
+    # form submission links
+    path("register", views.register, name="register")
 
 ]
