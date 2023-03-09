@@ -1084,10 +1084,10 @@ phys_y2 = [
 ]
 
 
-courses = comp_y1 + comp_y2 + eng_y1 + eng_y2 + phys_y1 + phys_y2
+courses = sorted(comp_y1+comp_y2+eng_y1+eng_y2+phys_y1+phys_y2, key= lambda c: len(c["posts"]))
 
 for i in range(len(courses)):
     if courses[i]["posts"][0]["filename"] == "":
         courses[i]["posts"] = []
 
-#print(courses)
+print(courses)
