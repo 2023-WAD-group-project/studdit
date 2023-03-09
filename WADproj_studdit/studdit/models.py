@@ -15,15 +15,24 @@ class Course(models.Model):
 class Post(models.Model):
     # relational fields
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    post_author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     # actual fields
     title = models.CharField(max_length=32, unique=True)
     filename = models.CharField(max_length=128, unique=True)
     description = models.CharField(max_length=1024*10, blank=True)
-    date = models.DateField(auto_now_add=True) # the auto now add param tells Django to use the date of when this entry is saved
+    date = models.DateTimeField(auto_now_add=True) # the auto now add param tells Django to use the date of when this entry is saved
     upvoted_by = models.ManyToManyField(Student, related_name='post_upvotedby',blank = True)
     downvoted_by = models.ManyToManyField(Student, related_name='post_downvotedby',blank = True)
     slug = models.SlugField(default="", null=False)
+
+    def total_upvotes(self):
+        return self.upvoted_by.count()
+    
+    def total_downvotes(self):
+        return self.upvoted_by.count()
+
+
 
 class Comment(models.Model):
     # relational fields
@@ -32,9 +41,15 @@ class Comment(models.Model):
 
     # actual fields
     content = models.CharField(max_length=1024*10, unique=True)
-    date = models.DateField(auto_now_add=True) # the auto now add param tells Django to use the date of when this entry is saved
+    date = models.DateTimeField(auto_now_add=True) # the auto now add param tells Django to use the date of when this entry is saved
 
     upvoted_by = models.ManyToManyField(Student, related_name='comment_upvotedby', blank = True)
     downvoted_by = models.ManyToManyField(Student, related_name='comment_downvotedby', blank = True)
+
+    def total_upvotes(self):
+        return self.upvoted_by.count()
+    
+    def total_downvotes(self):
+        return self.upvoted_by.count()
 
 
