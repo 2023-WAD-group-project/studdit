@@ -15,7 +15,7 @@ class Course(models.Model):
 class Post(models.Model):
     # relational fields
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    post_author = models.ForeignKey(User, on_delete=models.CASCADE)
+    post_author = models.ForeignKey(Student, on_delete=models.CASCADE)
 
     # actual fields
     title = models.CharField(max_length=32, unique=True)
