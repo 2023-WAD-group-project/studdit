@@ -5,11 +5,6 @@
     Profile
 {% endblock %}
 
-{%block extra_head_block %}
-    <link rel="stylesheet" href="{% static "css/profile.css" %}" />
-    <!-- <style> body { background-color: green; } </style> -->
-{% endblock %}
-
 {% block body_block %}
 
 <div class="container-fluid">
@@ -21,11 +16,11 @@
         <div class="col">
           <div class="row border h-50">
             <h4>account username:</h4>
-            <h4>nam</h4>
+            <h4>{{ user.username }}</h4>
           </div>
           <div class="row border h-50">
             <h4>account email:</h4>
-            <h4>1234567B@student.gla.ac.uk</h4>
+            <h4>{{ user.email }}</h4>
           </div>
         </div>
         <div class="col-  border">
@@ -83,7 +78,7 @@
         </div>
         <div class="col">
           <p style="display: inline">DISCLAIMER: deleting your account will ireversably delete your comments, posts, username, email, and encrypted password from out database.</p>
-          <p style="display: inline; color: red">they will not be recoverable.</p>
+          <p class="text-danger" style="display: inline;">they will not be recoverable.</p>
         </div>
       </form>
 
