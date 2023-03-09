@@ -8,61 +8,59 @@
 
 {% block body_block %}
 
-<div>
-  <h1 style="float: left">POST SEARCH: </h1>
-  <div style="float: right; padding-right: 700px;" class="tv">
-    <input type="search" id="site-search" name="search" placeholder="Search" size="80">
+<div class="container-fluid h-100">
+  <div class="row">
+    <div class="col-"><h1>{{course.title}}</h1></div>
+    <div class="col-6"><input class="w-100 h-75" type="search" id="site-search" name="search" placeholder="Search" /></div>
+    <div class="col">
+      <input class="form-check-input" type="checkbox" id="titleCheck" name="Title" value="test" />
+      <label class="form-check-label" >Title</label>
+    </div>
+    <div class="col">
+      <input class="form-check-input" type="checkbox" id="desCheck" name="Description" value="test" />
+      <label class="form-check-label" >Description</label>
+    </div>
   </div>
 
-  <div style="padding-left: 600px;">
-    <h4>Title</h4>
-    <input type="checkbox" id="titleCheck" name="Title" value="test">
-    <h4>Description</h4>
-    <input type="checkbox" id="desCheck" name="Description" value="test">
-  </div>
-
-  <hr>
+  <hr class="row">
 
   <!-- Post list section -->
 
-  <ul class="list-group">
+  <div class="row">
+    <ul class="list-group">
 
-    <div class="card-columns">
-      {% for post in posts %}
-            <div class="card bg-secondary text-white text-center p-3">
-
+      <div class="card-columns">
+        {% for post in posts %}
+              <div class="card bg-secondary text-white text-center p-3">
                 <h3>{{post.title}}</h3>
+                <button class="btn-light float-right" disabled>votes: xx</button>
+                <br />
+              </div>
+        {% endfor %}
+        </div>
 
-              <button class="btn-light float-right" disabled>votes: xx</button>
-              <br />
-            </div>
-      {% endfor %}
-      </div>
-
-  </ul>
+    </ul>
+  </div>
 
 
-  <hr>
+  <hr class="row" />
   <!-- Post new resource section -->
+  <div class="row">
+    <h2>Post A New Resource</h2>
 
-  <h2>Post A New Resource</h2>
-  <h3>{{course.title}}</h3>
-
-  <form action="/action_page.php">
-    <label for="fname">Resource Title</label><br>
-    <input type="text" id="resTitle" name="resTitle" value=""><br>
-    <label for="lname">Resource Description</label><br>
-    <input type="text" id="lname" name="lname" value=""><br><br>
-    <label for="lname">Resource File</label><br>
-    <input type="file" id="resFile" name="resFile" value="File" accept="application/pdf">
-    <br>
-    <br>
-    <br>
-    <input type="submit" value="Request">
-  </form>
-
-  <!-- This is the space between footer and page -->
-  <div style="padding-bottom: 50px;"></div>
+    <form action="/action_page.php">
+      <label for="fname">Resource Title</label><br />
+      <input type="text" id="resTitle" name="resTitle" value="" /><br />
+      <label for="lname">Resource Description</label><br />
+      <input type="text" id="lname" name="lname" value="" /><br /><br />
+      <label for="lname">Resource File</label><br />
+      <input type="file" id="resFile" name="resFile" value="File" accept="application/pdf" />
+      <br />
+      <br />
+      <br />
+      <input type="submit" value="Request" />
+    </form>
+  </div>
 </div>
 
 {% endblock %}
