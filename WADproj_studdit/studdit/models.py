@@ -24,7 +24,6 @@ class Post(models.Model):
     upvoted_by = models.ManyToManyField(Student, related_name='post_upvotedby',blank = True)
     downvoted_by = models.ManyToManyField(Student, related_name='post_downvotedby',blank = True)
     slug = models.SlugField(default="", null=False)
-    timeOfCreation = models.DateField()
 
 class Comment(models.Model):
     # relational fields

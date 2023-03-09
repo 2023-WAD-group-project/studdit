@@ -26,7 +26,6 @@ class postForm(forms.ModelForm):
     filename = forms.CharField(max_length=128, widget=forms.HiddenInput())
     
     slug = forms.CharField(widget=forms.HiddenInput(), required=False)
-    timeOfCreation = timezone.now()
     
     # wasnt sure what other fields to include, dont know if 
     # necessary to include upvoted_by or downvoted_by and not 
