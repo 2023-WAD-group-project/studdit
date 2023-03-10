@@ -33,7 +33,7 @@ $(document).ready(function() {
         
     
           $.get('/like_post/',
-          {'post_id': postIdVar, 'like_true': true},
+          {'post_id': postIdVar, 'not_pressed': true},
           function(data) {
           $('#votes').html(votes);
           }
@@ -57,7 +57,7 @@ $(document).ready(function() {
           
 
           $.get('/like_post/',
-          {'post_id': postIdVar, 'like_true': false},
+          {'post_id': postIdVar, 'not_pressed': false},
           function(data) {
           $('#votes').html(votes);
           }
@@ -103,8 +103,8 @@ $(document).ready(function() {
         
         
     
-          $.get('/like_post/',
-          {'post_id': postIdVar, 'like_true': true},
+          $.get('/dislike_post/',
+          {'post_id': postIdVar, 'not_pressed': true},
           function(data) {
           $('#votes').html(votes);
           }
@@ -125,8 +125,8 @@ $(document).ready(function() {
           
           
 
-          $.get('/like_post/',
-          {'post_id': postIdVar, 'like_true': false},
+          $.get('/dislike_post/',
+          {'post_id': postIdVar, 'not_pressed': false},
           function(data) {
           $('#votes').html(votes);
           }

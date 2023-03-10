@@ -23,8 +23,14 @@ def course(request):
     context_dict = {}
     return render(request, "course.html", context=context_dict)
 
-def post(request):
+def post(request, slug):
+    post = Post.objects.get(slug=slug)
+
+    
     context_dict = {}
+    context_dict['post'] = post
+    
+    
     return render(request, "post.html", context=context_dict)
 
 def login(request):
@@ -81,7 +87,8 @@ class LikePostView(View):
     def get(self, request):
         print("yellow")
         post_id = request.GET['post_id']
-        like_true = request.GET['like_true']
+        not_pressed = request.GET['not_pressed']
+        
         
         
         try:
@@ -91,6 +98,39 @@ class LikePostView(View):
         except ValueError:
             return HttpResponse(-1)
         
+        if not_pressed == "true":
+            
+            
+            post.upvotes = post.upvotes + 1
+
+        else:
+            post.upvotes = post.upvotes -1
+
+        post.save()
+        
+        return HttpResponse()
+    
+class DislikePostView(View):
+    def get(self, request):
+        print("green")
+        post_id = request.GET['post_id']
+        not_pressed = request.GET['not_pressed']
+        
+        
+        try:
+            post = Post.objects.get(id=str(post_id))
+        except Post.DoesNotExist:
+            return HttpResponse(-1)
+        except ValueError:
+            return HttpResponse(-1)
+        
+        if not_pressed == "true":
+            post.downvotes = post.downvotes +1
+
+        else:
+            post.downvotes = post.downvotes -1
+
+        post.save()
         return HttpResponse()
     
 
