@@ -29,7 +29,7 @@ def course(request):
     return render(request, "course.html", context=context_dict)
 
 
-
+@login_required
 def post(request, slug):
     post = Post.objects.get(slug=slug)
     print(post.upvotes)

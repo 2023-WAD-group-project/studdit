@@ -6,6 +6,7 @@ import studdit
 django.setup()
 
 from studdit.models import Course, Post, Student, Comment
+from django.contrib.auth.models import User
 
 import population_data
 
@@ -15,8 +16,8 @@ def add_comment(post, student, content):
 def add_student():
     pass
 
-def add_post(course, title, filename, description=""):
-    post = Post.objects.get_or_create(course=course, title=title, filename=filename)[0]
+def add_post(course, author, title, filename, description=""):
+    post = Post.objects.get_or_create(course=course, post_author=author, title=title, filename=filename)[0]
 
     post.description = description
 
@@ -33,22 +34,14 @@ def add_course(code, title):
 
 
 def populate():
-    # note: this needs to be moved into population_data.py once the physics courses are addede.
-    courses = [
-        {
-            "code": "COMPSCI10001",
-            "title": "CS1P",
-            "posts": [
-                {
-                    "title": "Phys2T scripting guide",
-                    "filename": "guide.pdf",
-                    "description": "this is the bash scripting guide containing good practice for bash scripting"
-                }
-            ]
-        }
-    ]
-
     courses = population_data.courses
+
+    user = User(username="Eric", email="2645295E@gla.ac.uk", password="EricPass?")
+    user.save()
+    user.set_password(user.password)
+    user.save()
+    author = Student(user=user)
+    author.save()
 
 
     for course_data in courses:
@@ -57,7 +50,7 @@ def populate():
         for post in course_data["posts"]:
             print(post)
             print(course_data["posts"])
-            add_post(course, post["title"], post["filename"], post["description"])
+            add_post(course, author, post["title"], post["filename"], post["description"])
 
 if __name__ == "__main__":
     print("Starting Rango population script...")
