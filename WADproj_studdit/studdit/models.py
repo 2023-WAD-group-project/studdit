@@ -18,15 +18,15 @@ class Post(models.Model):
     upvotes = models.IntegerField(default=0)
     downvotes = models.IntegerField(default=0)
     
-    post_author = models.ForeignKey(Student, on_delete=models.CASCADE)
+    #post_author = models.ForeignKey(Student, on_delete=models.CASCADE)
 
     # actual fields
     title = models.CharField(max_length=32, unique=True)
     filename = models.CharField(max_length=128, unique=True)
     description = models.CharField(max_length=1024*10, blank=True)
     date = models.DateTimeField(auto_now_add=True) # the auto now add param tells Django to use the date of when this entry is saved
-    upvoted_by = models.ManyToManyField(Student, related_name='post_upvotedby',blank = True)
-    downvoted_by = models.ManyToManyField(Student, related_name='post_downvotedby',blank = True)
+    upvoted_by = models.ManyToManyField(User, related_name='post_upvotedby',blank = True)
+    downvoted_by = models.ManyToManyField(User, related_name='post_downvotedby',blank = True)
     slug = models.SlugField(default="", null=False)
 
     def total_upvotes(self):

@@ -28,12 +28,35 @@ def course(request):
     context_dict = {}
     return render(request, "course.html", context=context_dict)
 
+
+
 def post(request, slug):
     post = Post.objects.get(slug=slug)
+    print(post.upvotes)
+    votes = post.upvotes - post.downvotes
+    if request.user.is_authenticated:
+        username = request.user.id
+    print(username)
+
+    if post.upvoted_by.filter(id=username).exists():
+        liked = "true"
+    else:
+        liked = "false"
+
+    if post.downvoted_by.filter(id=username).exists():
+        disliked = "true"
+    else:
+        disliked = "false"
+    
+    print(liked)
 
     
     context_dict = {}
     context_dict['post'] = post
+    context_dict['liked'] = liked
+    context_dict['disliked'] = disliked
+
+    context_dict['votes'] = votes
     
     
     return render(request, "post.html", context=context_dict)
@@ -61,10 +84,7 @@ def show_course(request, course_name_slug):
         context_dict['posts'] = None
     return render(request, 'course.html', context=context_dict)
 
-@login_required
-def post(request):
-    context_dict = {}
-    return render(request, "post.html", context=context_dict)
+
 
 def login_page(request):
     context_dict = {}
@@ -106,9 +126,15 @@ def add_post(request, course_name_slug):
 
 class LikePostView(View):
     def get(self, request):
-        print("yellow")
+        if request.user.is_authenticated:
+            username = request.user.id
+        
         post_id = request.GET['post_id']
         not_pressed = request.GET['not_pressed']
+        
+        
+
+    
         
         
         
@@ -119,13 +145,28 @@ class LikePostView(View):
         except ValueError:
             return HttpResponse(-1)
         
-        if not_pressed == "true":
+        
+        print(username)
+        if post.upvoted_by.filter(id=username).exists():
+            
+            post.upvoted_by.remove(request.user)
+            post.upvotes = post.upvotes -1
+
+        
+        else:
+            
+            post.upvoted_by.add(request.user)
+            
+            if post.downvoted_by.filter(id=username).exists():
+                print(post.downvoted_by.filter(id=username))
+                post.downvoted_by.remove(request.user)
+                post.downvotes = post.downvotes - 1
             
             
             post.upvotes = post.upvotes + 1
 
-        else:
-            post.upvotes = post.upvotes -1
+        
+            
 
         post.save()
         
@@ -133,9 +174,12 @@ class LikePostView(View):
     
 class DislikePostView(View):
     def get(self, request):
+        if request.user.is_authenticated:
+            username = request.user.id
         print("green")
         post_id = request.GET['post_id']
         not_pressed = request.GET['not_pressed']
+        
         
         
         try:
@@ -145,11 +189,26 @@ class DislikePostView(View):
         except ValueError:
             return HttpResponse(-1)
         
-        if not_pressed == "true":
-            post.downvotes = post.downvotes +1
+        if post.downvoted_by.filter(id=username).exists():
+            print("rry")
+            
+            post.downvoted_by.remove(request.user)
+            post.downvotes = post.downvotes - 1
 
+        
         else:
-            post.downvotes = post.downvotes -1
+            
+            post.downvoted_by.add(request.user)
+            print("yellow")
+            if post.upvoted_by.filter(id=username).exists():
+                post.upvoted_by.remove(request.user)
+                post.upvotes = post.upvotes -1
+            
+            
+            post.downvotes = post.downvotes + 1
+
+        
+            
 
         post.save()
         return HttpResponse()
