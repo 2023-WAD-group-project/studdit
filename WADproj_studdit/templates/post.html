@@ -29,7 +29,7 @@
     
       
     <button  disabled>votes:<p class="float-right" id="votes">{{votes}}</p></button>
-    <button id="upvote" data-postid="{{ post.id }}"  data-liked = "{{liked}}" data-username = "{{ user.id }}" style="width:30px;" type = "button">+ </button><button id="downvote" style="width:30px;" data-postid="{{ post.id }}" data-disliked = "{{disliked}}">− </button>
+    <button style = 'background-color: grey;'class = "{{colourLiked}}" id="upvote" data-postid="{{ post.id }}"  data-liked = "{{liked}}" data-username = "{{ user.id }}" style="width:30px;" type = "button" >+ </button><button style = 'background-color: grey;' class = "{{colourDisliked}}" id="downvote" style="width:30px;" data-postid="{{ post.id }}" data-disliked = "{{disliked}}">− </button>
     
 
     

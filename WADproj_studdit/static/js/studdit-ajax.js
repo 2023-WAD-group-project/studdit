@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  upvotePressed = false
+  downvotePressed2 = false
     
         
         
@@ -13,28 +15,48 @@ $(document).ready(function() {
 
 
     $('#upvote').click(function() {
+      downvote.style.backgroundColor = "grey"
         
         
         
         var postIdVar;
         postIdVar = $(this).attr('data-postid');
         postUserVar = $(this).attr('data-username');
-        postUserLiked = $(this).attr('data-liked');
+        if (upvotePressed == false){
+          postUserLiked = $(this).attr('data-liked');
 
-        downvote.style.backgroundColor = ""
+        }
+        else{
+          postUserLiked = "false"
+
+        }
+        if (downvotePressed2 == false){
+          postUserDisliked = $(downvote).attr('data-disliked');
+
+        }
+        else{
+          postUserDisliked = "false"
+
+        }
+        
+
+        downvote.class = "btn btn-default"
         
         
         if (pressed == false){
-          alert(postUserLiked)
+          upvote.style.backgroundColor = "green"
           
-            if (pressed2 == true){
-              if (postUserLiked == "false"){
+          pressed = true
+          
+          
+          
+          
+          
+            if (pressed2 == true || postUserDisliked == "true"){
+
                 votes ++
-              }
-              else{
-                alert("erer")
-                votes = votes - 1
-              }
+              
+              
             }
 
             
@@ -45,6 +67,23 @@ $(document).ready(function() {
               votes ++
 
             }
+            else{
+              if (upvotePressed == false){
+                
+                votes =votes -1
+                upvotePressed = true
+                pressed = false
+                upvote.style.backgroundColor = ""
+
+                
+  
+              }
+
+            }
+
+            
+            
+            
             
            
             
@@ -57,14 +96,15 @@ $(document).ready(function() {
           $('#votes').html(votes);
           }
           )
-          pressed = true
           
-          upvote.style.backgroundColor = "green"
+          
+          
           //pressed1 = true
           
 
         }
         else{
+          alert("www")
             
             
             votes --
@@ -81,7 +121,7 @@ $(document).ready(function() {
           $('#votes').html(votes);
           }
           )
-          upvote.style.backgroundColor = ""
+          upvote.style.backgroundColor = "grey"
           
 
           
@@ -110,24 +150,59 @@ $(document).ready(function() {
         var postIdVar;
         postIdVar = $(this).attr('data-postid');
         postUserVar = $(this).attr('data-username');
-        postUserDisliked = $(this).attr('data-disliked');
-        upvote.style.backgroundColor = ""
+        if (downvotePressed2 == false){
+          postUserDisliked = $(this).attr('data-disliked');
+
+        }
+        else{
+          postUserDisliked = "false"
+
+        }
+
+        if (upvotePressed == false){
+          postUserLiked = $(this).attr('data-liked');
+
+        }
+        else{
+          postUserLiked = "false"
+
+        }
+        upvote.style.backgroundColor = "grey"
         
         if (pressed2 == false){
+          downvote.style.backgroundColor = "red"
+          
+          
           
             pressed2 = true
 
-            if (pressed == true){
-              if (postUserDisliked == "false"){
+            if (pressed == true || postUserLiked == "true"){
+              
                 votes --
-              }
+              
             }
             
 
             if (postUserDisliked == "false"){
             votes --
             }
-            alert(postUserDisliked)
+            else{
+              
+              if (downvotePressed2 == false){
+                
+                
+                votes ++
+                downvotePressed2 = true
+                pressed2 = false
+                downvote.style.backgroundColor = ""
+                
+  
+              }
+
+            }
+
+            
+            
         
         
     
@@ -139,7 +214,7 @@ $(document).ready(function() {
           )
           
           
-          downvote.style.backgroundColor = "red"
+          
           
           
 
@@ -160,7 +235,7 @@ $(document).ready(function() {
           $('#votes').html(votes);
           }
           )
-          downvote.style.backgroundColor = ""
+          downvote.style.backgroundColor = "grey"
 
           
           

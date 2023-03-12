@@ -29,7 +29,7 @@ def course(request):
     return render(request, "course.html", context=context_dict)
 
 
-@login_required
+
 def post(request, slug):
     post = Post.objects.get(slug=slug)
     print(post.upvotes)
@@ -40,12 +40,16 @@ def post(request, slug):
 
     if post.upvoted_by.filter(id=username).exists():
         liked = "true"
+        colourLiked = "btn btn-success"
     else:
         liked = "false"
+        colourLiked = "btn btn-default"
 
     if post.downvoted_by.filter(id=username).exists():
+        colourDisliked = "btn btn-danger"
         disliked = "true"
     else:
+        colourDisliked = "btn btn-default"
         disliked = "false"
     
     print(liked)
@@ -55,6 +59,8 @@ def post(request, slug):
     context_dict['post'] = post
     context_dict['liked'] = liked
     context_dict['disliked'] = disliked
+    context_dict['colourLiked'] = colourLiked
+    context_dict['colourDisliked'] = colourDisliked
 
     context_dict['votes'] = votes
     
