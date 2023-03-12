@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse
-from studdit.models import Post, Course, Student
+from studdit.models import Post, Course, Student, Comment
 from django.views import View
 
 from django.contrib.auth import authenticate, login, logout
@@ -32,7 +32,7 @@ def course(request):
 
 def post(request, slug):
     post = Post.objects.get(slug=slug)
-    print(post.upvotes)
+    comment = Comment.objects.filter(post=post).order_by('-date')
     votes = post.upvotes - post.downvotes
     if request.user.is_authenticated:
         username = request.user.id
@@ -56,6 +56,7 @@ def post(request, slug):
 
     
     context_dict = {}
+    context_dict['comment'] = comment
     context_dict['post'] = post
     context_dict['liked'] = liked
     context_dict['disliked'] = disliked

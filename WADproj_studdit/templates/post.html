@@ -29,7 +29,7 @@
     
       
     <button  disabled>votes:<p class="float-right" id="votes">{{votes}}</p></button>
-    <button style = 'background-color: grey;'class = "{{colourLiked}}" id="upvote" data-postid="{{ post.id }}"  data-liked = "{{liked}}" data-username = "{{ user.id }}" style="width:30px;" type = "button" >+ </button><button style = 'background-color: grey;' class = "{{colourDisliked}}" id="downvote" style="width:30px;" data-postid="{{ post.id }}" data-disliked = "{{disliked}}">− </button>
+    <button class = "{{colourLiked}}" id="upvote" data-postid="{{ post.id }}"  data-liked = "{{liked}}" data-username = "{{ user.id }}" style="width:30px;" type = "button" >+ </button><button  class = "{{colourDisliked}}" id="downvote" style="width:30px;" data-postid="{{ post.id }}" data-disliked = "{{disliked}}">− </button>
     
 
     
@@ -54,11 +54,15 @@
   <div class = "scroll">
     
     <ul class="list-group">
-      {% for i in '123456789'|make_list %}
+      {% if comment %}
+        <ul>
+            {% for c in comment %}
       
-      <li class="list-group-item">username{{i}} says:  he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says<button class = "float-right" id="minus2" style="width:30px;">− </button><button class = "float-right" id="plus2" style="width:30px;">+ </button></li>
+      
+      <li class="list-group-item">{{ c.student.user}} says:  {{c.content}}<button class = "float-right" id="minus2" style="width:30px;">− </button><button class = "float-right" id="plus2" style="width:30px;">+ </button></li>
       
       {% endfor %}
+      {% endif %}
     </ul>
     
   </div>

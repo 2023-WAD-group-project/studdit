@@ -7,4 +7,5 @@ class PostAdmin(admin.ModelAdmin):
 admin.site.register(Course)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Student)
+admin.site.register(Comment)
 
