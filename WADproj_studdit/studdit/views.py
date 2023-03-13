@@ -6,7 +6,7 @@ from django.views import View
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from studdit.forms import UserForm
+from studdit.forms import PostForm, UserForm
 # Create your views here.
 
 @login_required
@@ -117,11 +117,12 @@ def add_post(request, course_name_slug):
             post.save()
 
             return redirect(reverse('show_course', kwargs={'course_name_slug': course_name_slug}))
+            #return show_course(request, course_name_slug)
     else:
         print(form.errors)
 
     context_dict = {'form': form, 'course': course}
-    return render(request, 'post.html', context=context_dict)
+    return render(request, 'add_post.html', context_dict)
 
 class LikePostView(View):
     def get(self, request):

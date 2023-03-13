@@ -13,12 +13,11 @@ class UserForm(forms.ModelForm):
                                
 
 # agreed to leaving out courseForm as courses can be added manually (by admin)
-class postForm(forms.ModelForm):
+class PostForm(forms.ModelForm):
 
     # i also feel like there should be a something declaring what
     # student the post belongs to
     
-    # i think this should work will need to tried
     course = forms.CharField(max_length=16, widget=forms.Select(choices=courses))
     
     title = forms.CharField(max_length=32)
