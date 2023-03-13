@@ -36,13 +36,24 @@ def add_course(code, title):
 def populate():
     courses = population_data.courses
 
+    authors = []
+
     user = User(username="Eric", email="2645295E@gla.ac.uk", password="EricPass?")
     user.save()
     user.set_password(user.password)
     user.save()
     author = Student(user=user)
     author.save()
+    authors.append(author)
+    user = User(username="John", email="2645295J@gla.ac.uk", password="JohnPass?")
+    user.save()
+    user.set_password(user.password)
+    user.save()
+    author = Student(user=user)
+    author.save()
+    authors.append(author)
 
+    print(authors)
 
     for course_data in courses:
         
@@ -50,7 +61,7 @@ def populate():
         for post in course_data["posts"]:
             print(post)
             print(course_data["posts"])
-            add_post(course, author, post["title"], post["filename"], post["description"])
+            add_post(course, authors[post.get("author", 0)], post["title"], post["filename"], post["description"])
 
 if __name__ == "__main__":
     print("Starting Rango population script...")

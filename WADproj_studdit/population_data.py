@@ -7,6 +7,12 @@ comp_y1 = [
                 "title": "anaconda install file",
                 "filename": "anaconda.exe",
                 "description": "this is the installation file for anaconda"
+            },
+            {
+                "title": "anaconda uninstall file",
+                "filename": "anaconda_unist.exe",
+                "description": "this is the uninstallation file for anaconda",
+                "author": 1
             }
         ]
     },
@@ -59,9 +65,10 @@ comp_y1 = [
         "title": "1S Systems",
         "posts": [
             {
-                "title": "",
-                "filename": "",
-                "description": ""
+                "title": "sigma16 homepage",
+                "filename": "https://jtod.github.io/home/Sigma16/",
+                "description": "the url for the home page for sigma16",
+                "author": 1
             }
         ]
     },
