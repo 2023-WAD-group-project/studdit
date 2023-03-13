@@ -18,7 +18,7 @@ class Post(models.Model):
     upvotes = models.IntegerField(default=0)
     downvotes = models.IntegerField(default=0)
     
-    #post_author = models.ForeignKey(Student, on_delete=models.CASCADE)
+    post_author = models.ForeignKey(Student, on_delete=models.CASCADE)
 
     # actual fields
     title = models.CharField(max_length=32, unique=True)
