@@ -1,0 +1,9 @@
+{% for post in posts %}
+<a href="/post/{{post.slug}}">
+  <div class="card bg-secondary text-white text-center p-3">
+    <h3>{{post.title}}</h3>
+    {% if "votes" in settings %}<button class="btn-light float-right" disabled>votes: xx</button>{% endif %}
+    <br />
+  </div>
+</a>
+{% endfor %}

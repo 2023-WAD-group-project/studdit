@@ -28,17 +28,19 @@
 
   <div class="row">
     <ul class="list-group">
-
-      <div class="card-columns">
-        {% for post in posts %}
-              <div class="card bg-secondary text-white text-center p-3">
-                <h3>{{post.title}}</h3>
-                <button class="btn-light float-right" disabled>votes: xx</button>
-                <br />
-              </div>
-        {% endfor %}
-        </div>
-
+      <div class="card-columns" id="posts_div">
+        <script>
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("posts_div").innerHTML = this.responseText;
+            console.log(this.responseText)
+            }
+          };
+          xhttp.open("GET", "/get_posts?format=xml&course={{course.code}}&xml_fields[]=votes", true);
+          xhttp.send();
+        </script>
+      </div>
     </ul>
   </div>
 
