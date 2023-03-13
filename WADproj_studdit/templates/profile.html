@@ -90,15 +90,18 @@
   <div class="row">
     <div class="container px-0">
       <h3>my posts:</h3>
-      <div class="card-columns">
-      {% for i in '0123456789'|make_list %} {# TODO: change this for loop to be for course in courses (when the course database actually exists) #}
-        <div class="card bg-secondary text-white text-center p-3">
-          <button class="btn-danger float-left">DELETE</button>
-          <button class="btn-light float-right" disabled>votes: xx</button>
-          <br />
-          <h3>a typically very long post title</h3>
-        </div>
-      {% endfor %}
+      <div id="posts_div" class="card-columns">
+        <script>
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("posts_div").innerHTML = this.responseText;
+            console.log(this.responseText)
+            }
+          };
+          xhttp.open("GET", "/get_posts?format=xml&student={{user.username}}&xml_fields[]=votes&xml_fields[]=delete", true);
+          xhttp.send();
+        </script>
       </div>
     </div>
   </div>

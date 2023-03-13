@@ -2,7 +2,10 @@
 <a href="/post/{{post.slug}}">
   <div class="post_card card bg-secondary text-white text-center p-3">
     <h3>{{post.title}}</h3>
+    {% if "delete" in settings %}<button class="btn-danger float-left">DELETE</button>{% endif %}
     {% if "votes" in settings %}<button class="btn-light float-right" disabled>votes: xx</button>{% endif %}
+          <br />
+          <h3>a typically very long post title</h3>
     <br />
   </div>
 </a>

@@ -37,7 +37,7 @@ def get_courses(request):
 endpoint docs:
 arguments:
 course - if this is specified, we filter the returnable to only include the posts associated with this course.
-user - if this is specified, we filter the returnable to only include posts created by the specified user.
+student - if this is specified, we filter the returnable to only include posts created by the student with the specified username.
 format - json or xml. if xml, we return a rendered template containing html to display the posts on a webpage.
 """
 def json_fallback(obj):
@@ -52,8 +52,8 @@ def get_posts(request):
     posts_courseFiltered = posts
     posts_userFiltered = posts
 
-    if "user" in arguments:
-        posts = posts.filter(post_author__user__username__exact=arguments["user"])
+    if "student" in arguments:
+        posts = posts.filter(post_author__user__username__exact=arguments["student"])
 
     if "course" in arguments:
         posts = posts.filter(course_id__exact=arguments["course"])
