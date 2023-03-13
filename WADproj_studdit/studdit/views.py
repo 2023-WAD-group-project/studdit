@@ -68,14 +68,6 @@ def post(request, slug):
     
     return render(request, "post.html", context=context_dict)
 
-def login(request):
-    context_dict = {}
-    return render(request, "login.html", context=context_dict)
-
-def profile(request):
-    context_dict = {}
-    return render(request, "profile.html", context=context_dict)
-
 
 @login_required
 def show_course(request, course_name_slug):
