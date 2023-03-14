@@ -65,7 +65,7 @@ def populate():
 
     do_managepy_command("makemigrations studdit")
     do_managepy_command("migrate")
-    User.objects.create_superuser('rooot', 'email@email.email', 'password')
+    User.objects.create_superuser('root', 'email@email.email', 'password')
 
     courses = population_data.courses
 
