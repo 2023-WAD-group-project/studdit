@@ -65,20 +65,20 @@ def populate():
 
     do_managepy_command("makemigrations studdit")
     do_managepy_command("migrate")
-    User.objects.create_superuser('rooot', 'email@email.email', 'password')
+    User.objects.create_superuser('root', 'email@email.email', 'password')
 
     courses = population_data.courses
 
     authors = []
 
-    user = User(username="Eric", email="2645295E@gla.ac.uk", password="EricPass?")
+    user = User(username="Eric", email="2645295E@student.gla.ac.uk", password="EricPass?")
     user.save()
     user.set_password(user.password)
     user.save()
     author = Student(user=user)
     author.save()
     authors.append(author)
-    user = User(username="John", email="2645295J@gla.ac.uk", password="JohnPass?")
+    user = User(username="John", email="2645295J@student.gla.ac.uk", password="JohnPass?")
     user.save()
     user.set_password(user.password)
     user.save()
