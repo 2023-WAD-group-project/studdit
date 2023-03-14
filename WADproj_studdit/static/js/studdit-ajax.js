@@ -53,6 +53,7 @@ $(document).ready(function() {
           
           
             if (pressed2 == true || postUserDisliked == "true"){
+              alert("awawawaw")
 
                 votes ++
               
@@ -68,12 +69,14 @@ $(document).ready(function() {
 
             }
             else{
+              upvote.style.backgroundColor = "grey"
+              
               if (upvotePressed == false){
                 
                 votes =votes -1
                 upvotePressed = true
                 pressed = false
-                upvote.style.backgroundColor = ""
+                
 
                 
   
@@ -160,7 +163,7 @@ $(document).ready(function() {
         }
 
         if (upvotePressed == false){
-          postUserLiked = $(this).attr('data-liked');
+          postUserLiked = $(upvote).attr('data-liked');
 
         }
         else{
@@ -177,7 +180,7 @@ $(document).ready(function() {
             pressed2 = true
 
             if (pressed == true || postUserLiked == "true"){
-              
+                alert("awawawaw")
                 votes --
               
             }
@@ -187,6 +190,7 @@ $(document).ready(function() {
             votes --
             }
             else{
+              downvote.style.backgroundColor = "grey"
               
               if (downvotePressed2 == false){
                 
@@ -194,7 +198,7 @@ $(document).ready(function() {
                 votes ++
                 downvotePressed2 = true
                 pressed2 = false
-                downvote.style.backgroundColor = ""
+                
                 
   
               }
