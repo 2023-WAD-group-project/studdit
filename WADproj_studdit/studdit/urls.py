@@ -10,10 +10,7 @@ urlpatterns = [
 
     path('course/<slug:course_name_slug>/', views.show_course, name='show_course'),
 
-    #
-    path("post/<slug:slug>", views.post, name="post"),
-
-    
+    path("course/<slug:course_name_slug>/post/<slug:slug>", views.post, name="post"),
 
     #path("add_post", views.add_post, name="add_post"), // need to add Post form to complete
 

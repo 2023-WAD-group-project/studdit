@@ -1,5 +1,6 @@
 {% for post in posts %}
-<a href="/post/{{post.slug}}">
+<a href="{% url 'post' post.course.code post.slug %}">
+<!-- <a href="/post/{{post.slug}}"> -->
   <div class="post_card card bg-secondary text-white text-center p-3">
     <h3>{{post.title}}</h3>
     {% if "delete" in settings %}<button class="btn-danger float-left">DELETE</button>{% endif %}

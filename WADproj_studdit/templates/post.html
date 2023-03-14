@@ -1,27 +1,14 @@
 {% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-
-
-
-
 
 {% block title_block %}
-
     Post
 {% endblock %}
-
-{%block extra_head_block %}
-    <script src="{% static 'test.js' %}"></script>
-    <link rel="stylesheet" href="{% static "css/post.css" %}" />
-    <!-- <style> body { background-color: green; } </style> -->
-{% endblock %}
-
 
 {% block body_block %}
 <div class = "container-fluid">
   
-  <embed src="{% static "images/joo.pdf" %}" type="application/pdf"   height="500" width="100%" >
+  <embed src="/media/{{post.course.code}}/{{post.filename}}" type="application/pdf" height="500" width="100%" >
   <div class="well">
     
     <h2> POST TITLE 
@@ -68,6 +55,4 @@
   </div>
 
 </div>
-
-
 {% endblock %}

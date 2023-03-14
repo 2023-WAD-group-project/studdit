@@ -30,8 +30,8 @@ def course(request):
 
 
 
-def post(request, slug):
-    post = Post.objects.get(slug=slug)
+def post(request, course_name_slug, slug):
+    post = Post.objects.get(course=Course.objects.get(code=course_name_slug), slug=slug)
     comment = Comment.objects.filter(post=post).order_by('-date')
     votes = post.upvotes - post.downvotes
     if request.user.is_authenticated:
