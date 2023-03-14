@@ -9,6 +9,10 @@ h1 {
     font-family:'Prompt', sans-serif;
 }
 
+.header {
+    background-color: #0A2463;
+}
+
 a:link {
     color: #FFFAFF !important; 
 }
@@ -31,9 +35,13 @@ button {
 }
 
 .footer {
-    margin-top: auto;
+    /* margin-top: auto; */
     background-color: #D8315B;
     padding: 10px;
+    bottom: 0;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
 }
 
 .course_card, .post_card {
@@ -48,3 +56,19 @@ button {
     border-radius: 15px;
     margin: 1px;
 }
+
+.form-floating{
+    margin: 7px;
+    
+}
+
+.btn-primary{
+    margin: 7px;
+    width: 500px;
+}
+
+.checkbox {
+    accent-color: #D8315B;
+}
+
+
