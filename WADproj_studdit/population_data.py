@@ -4,14 +4,14 @@ comp_y1 = [
         "title": "Computing Science 1P (Standard Route)",
         "posts": [
             {
-                "title": "anaconda install file",
-                "filename": "anaconda.exe",
-                "description": "this is the installation file for anaconda"
+                "title": "anaconda install guide",
+                "filename": "anaconda_inst.txt",
+                "description": "this is a text file containing isntructions to guide you through the installation of anaconda"
             },
             {
-                "title": "anaconda uninstall file",
-                "filename": "anaconda_unist.exe",
-                "description": "this is the uninstallation file for anaconda",
+                "title": "anaconda uninstall guide",
+                "filename": "anaconda_uninst.txt",
+                "description": "this is a text file containing isntructions to guide you through the uninstallation of anaconda",
                 "author": 1
             }
         ]
@@ -65,10 +65,9 @@ comp_y1 = [
         "title": "1S Systems",
         "posts": [
             {
-                "title": "sigma16 homepage",
-                "filename": "https://jtod.github.io/home/Sigma16/",
-                "description": "the url for the home page for sigma16",
-                "author": 1
+                "title": "",
+                "filename": "",
+                "description": ""
             }
         ]
     },
@@ -235,8 +234,15 @@ comp_y2 = [
         "posts": [
             {
                 "title": "Rango book",
-                "filename": "rango.pdf",
-                "description": "this is the ebook for rango"
+                "filename": "(TWD e-book) twd-uog-lib-2021-01-07.pdf",
+                "description": "this is the ebook for rango",
+                "author": 1
+            },
+            {
+                "title": "rango image",
+                "filename": "rango.jpg",
+                "description": "the url for the home page for sigma16",
+                "author": 1
             }
         ]
     },
@@ -267,9 +273,9 @@ comp_y2 = [
         "title": "Networks and Operating Systems Essentials 2",
         "posts": [
             {
-                "title": "",
-                "filename": "",
-                "description": ""
+                "title": "AE2 report for example",
+                "filename": "example AE2.pdf",
+                "description": "the exported pdf for a submission for network & operating systems assessed exercise 2"
             }
         ]
     },
@@ -1071,8 +1077,8 @@ phys_y2 = [
         "title": "Physics 2T: Programming Under Linux ",
         "posts": [
             {
-                "title": "Phys2T scripting guide",
-                "filename": "guide.pdf",
+                "title": "Phys2T bash scripting guide",
+                "filename": "BashScriptingGuide.pdf",
                 "description": "this is the bash scripting guide containing good practice for bash scripting"
             }
         ]

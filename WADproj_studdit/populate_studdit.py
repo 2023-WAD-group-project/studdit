@@ -9,6 +9,7 @@ from studdit.models import Course, Post, Student, Comment
 from django.contrib.auth.models import User
 
 import population_data
+import shutil
 
 def add_comment(post, student, content):
     comment = Comment.objects.get_or_create(post=post, conent=content)
@@ -31,9 +32,41 @@ def add_course(code, title):
     course.save()
     return course
 
-
+def do_managepy_command(cmd):
+    cmd = "manage.py " + cmd
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'WADproj_studdit.settings')
+    try:
+        from django.core.management import execute_from_command_line
+    except ImportError as exc:
+        raise ImportError(
+            "Couldn't import Django. Are you sure it's installed and "
+            "available on your PYTHONPATH environment variable? Did you "
+            "forget to activate a virtual environment?"
+        ) from exc
+    execute_from_command_line(cmd.split(" "))
 
 def populate():
+    if os.path.basename(os.getcwd()) != "WADproj_studdit":
+        print(os.path.basename(os.getcwd()) + " is not the correct folder, please execute this script from inside WADproj_studdit")
+        return
+
+    try:
+        shutil.rmtree(os.path.join("studdit", "migrations"))
+    except FileNotFoundError:
+        print("\"studdit/migrations\" folder does not exist so we did not delete it")
+    try:
+        shutil.rmtree("media")
+    except FileNotFoundError:
+        print("\"media\" folder does not exist so we did not delete it")
+    try:
+        os.remove("db.sqlite3")
+    except FileNotFoundError:
+        print("\"db.sqlite3\" file does not exist so we did not delete it")
+
+    do_managepy_command("makemigrations studdit")
+    do_managepy_command("migrate")
+    User.objects.create_superuser('rooot', 'email@email.email', 'password')
+
     courses = population_data.courses
 
     authors = []
@@ -56,12 +89,16 @@ def populate():
     print(authors)
 
     for course_data in courses:
-        
+
         course = add_course(course_data["code"], course_data["title"])
         for post in course_data["posts"]:
             print(post)
             print(course_data["posts"])
             add_post(course, authors[post.get("author", 0)], post["title"], post["filename"], post["description"])
+
+    src = os.path.join("population_files", "media")
+    dest = "media"
+    destination = shutil.copytree(src, dest)
 
 if __name__ == "__main__":
     print("Starting Rango population script...")
