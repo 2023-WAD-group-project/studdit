@@ -13,6 +13,7 @@
     <div class="col-"><h1>{{course.title}}</h1></div>
     <div class="col-">
       <input type="text" id="site-search" name="search" placeholder="Post Search..." /><button>Search</button>
+      <a href="add_post/"><button>Add Post</button></a>
     <!-- <div class="col">
       <input class="form-check-input" type="checkbox" id="titleCheck" name="Title" value="test" />
       <label class="form-check-label" >Title</label>
@@ -44,26 +45,7 @@
       </div>
     </ul>
   </div>
-
-
-  <hr class="row" />
-  <!-- Post new resource section -->
-  <div class="row">
-    <h2>Post A New Resource</h2>
-
-    <form action="/action_page.php">
-      <label for="fname">Resource Title</label><br />
-      <input type="text" id="resTitle" name="resTitle" value="" /><br />
-      <label for="lname">Resource Description</label><br />
-      <input type="text" id="lname" name="lname" value="" /><br /><br />
-      <label for="lname">Resource File</label><br />
-      <input type="file" id="resFile" name="resFile" value="File" accept="application/pdf" />
-      <br />
-      <br />
-      <br />
-      <input type="submit" value="Request" />
-    </form>
-  </div>
+  
 </div>
 
 {% endblock %}
