@@ -35,6 +35,10 @@ class Post(models.Model):
     def total_downvotes(self):
         return self.upvoted_by.count()
 
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Post, self).save(*args, **kwargs)
+
 
 
 class Comment(models.Model):
