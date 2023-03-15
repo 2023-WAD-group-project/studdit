@@ -17,6 +17,15 @@ a:link {
     color: #FFFAFF !important; 
 }
 
+input[type=submit] {
+    background-color: #D8315B !important;
+    font-size: 18px;
+    padding: 8px;
+    border: 1px solid #D8315B;
+    border-radius: 15px;
+    margin: 1px;
+}
+
 .sidebar-sticky {
     background-color: #1E1B18;
 }
@@ -32,6 +41,11 @@ button {
     border: 1px solid #D8315B;
     border-radius: 15px;
     margin: 1px;
+    color: #1E1B18;
+}
+
+button :hover {
+    background-color: #CE2751 !important;
 }
 
 .footer {

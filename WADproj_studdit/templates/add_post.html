@@ -5,20 +5,19 @@
 {% endblock %}
 
 {% block body_block %}
-<div class="row">
-    <h2>Post A New Resource</h2>
 
-    <form action="/action_page.php">
-      <label for="fname">Resource Title</label><br />
-      <input type="text" id="resTitle" name="resTitle" value="" /><br />
-      <label for="lname">Resource Description</label><br />
-      <input type="text" id="lname" name="lname" value="" /><br /><br />
-      <label for="lname">Resource File</label><br />
-      <input type="file" id="resFile" name="resFile" value="File" accept="application/pdf" />
-      <br />
-      <br />
-      <br />
-      <input type="submit" value="Request" />
-    </form>
-  </div>
+  <h1>Post A New Resource</h1>
+  <form action="/action_page.php">
+    <label for="fname">Resource Title</label><br />
+    <input type="text" id="resTitle" name="resTitle" value="" /><br />
+    <label for="lname">Resource Description</label><br />
+    <input type="text" id="lname" name="lname" value="" /><br /><br />
+    <label for="lname">Resource File</label><br />
+    <input type="file" id="resFile" name="resFile" value="File" accept="application/pdf">
+    <br />
+    <br />
+    <br />
+    <input type="submit" value="Request">
+  </form>
+
 {% endblock %}
