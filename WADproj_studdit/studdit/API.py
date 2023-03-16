@@ -20,8 +20,7 @@ def get_courses(request):
     courses = Course.objects.filter(title__contains=arguments.get("title", ""))
 
     if arguments.get("showempty", "false") != "true":
-        courses = courses.filter(post__isnull=False)
-
+        courses = set(courses.filter(post__isnull=False))
 
     if arguments.get("format", "json") == "json":
         response = json.dumps([course for course in courses.values()])

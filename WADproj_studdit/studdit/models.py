@@ -14,7 +14,7 @@ class Course(models.Model):
 
 class Post(models.Model):
     # relational fields
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)#
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
     upvotes = models.IntegerField(default=0)
     downvotes = models.IntegerField(default=0)
     
