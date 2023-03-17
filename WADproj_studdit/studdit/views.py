@@ -94,7 +94,7 @@ def profile(request):
     context_dict = {}
     return render(request, "profile.html", context=context_dict)
 
-
+@login_required
 def add_post(request, course_name_slug):
     try:
         course = Course.objects.get(code=course_name_slug)
@@ -107,22 +107,27 @@ def add_post(request, course_name_slug):
     form = PostForm()
 
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
 
     if form.is_valid():
         if course:
             post = form.save(commit=False)
             post.course = course
+            post.post_author = Student.objects.get(user=request.user)
             post.views = 0
             post.save()
 
+            with open("media/" + course_name_slug + "/" + post.filename, 'wb+') as f:
+                for chunk in request.FILES["file"].chunks():
+                    f.write(chunk)
+
             return redirect(reverse('show_course', kwargs={'course_name_slug': course_name_slug}))
-            #return show_course(request, course_name_slug)
     else:
+        print("form errors:")
         print(form.errors)
 
     context_dict = {'form': form, 'course': course}
-    return render(request, 'add_post.html', context_dict)
+    return render(request, 'add_post.html', context=context_dict)
 
 class LikePostView(View):
     def get(self, request):

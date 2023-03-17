@@ -7,17 +7,25 @@
 {% block body_block %}
 
   <h1>Post A New Resource</h1>
-  <form action="/action_page.php">
+  <form action="{% url 'add_post' course.code %}" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+    <input type="hidden" id="filename" name="filename" value="" /><br />
     <label for="fname">Resource Title</label><br />
-    <input type="text" id="resTitle" name="resTitle" value="" /><br />
+    <input type="text" id="resTitle" name="title" value="" /><br />
     <label for="lname">Resource Description</label><br />
-    <input type="text" id="lname" name="lname" value="" /><br /><br />
+    <input type="text" id="lname" name="description" value="" /><br /><br />
     <label for="lname">Resource File</label><br />
-    <input type="file" id="resFile" name="resFile" value="File" accept="application/pdf">
+    <input type="file" id="file" name="file" value="File" accept="application/pdf">
     <br />
     <br />
     <br />
     <input type="submit" value="Request">
   </form>
+
+  <script>
+  document.getElementById('file').onchange = function () {
+    document.getElementById('filename').value = this.value.replace('C:\\fakepath\\', ' ');
+  };
+</script>
 
 {% endblock %}
