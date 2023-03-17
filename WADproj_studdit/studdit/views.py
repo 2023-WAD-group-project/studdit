@@ -2,11 +2,14 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse
 from studdit.models import Post, Course, Student, Comment
 from django.views import View
+from django.conf import settings
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 from studdit.forms import PostForm, UserForm
+
+import os
 # Create your views here.
 
 @login_required
@@ -117,7 +120,7 @@ def add_post(request, course_name_slug):
             post.views = 0
             post.save()
 
-            with open("media/" + course_name_slug + "/" + post.filename, 'wb+') as f:
+            with open(os.path.join(settings.MEDIA_ROOT, course_name_slug, post.filename), 'wb+') as f:
                 for chunk in request.FILES["file"].chunks():
                     f.write(chunk)
 
