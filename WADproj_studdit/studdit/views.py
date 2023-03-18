@@ -4,6 +4,7 @@ from studdit.models import Post, Course, Student, Comment
 from django.views import View
 from django.conf import settings
 
+from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
@@ -257,3 +258,27 @@ def register(request):
 def log_out(request):
     logout(request)
     return redirect(reverse("login"))
+
+
+class CommentPost(View):
+    def get(self, request):
+        if request.user.is_authenticated:
+            username = request.user
+
+        
+        post_id = request.GET['post_id']
+        post = Post.objects.get(id=str(post_id))
+        content = request.GET['content']
+        print(post_id.__class__)
+        print(content)
+        new = Comment(post=post,student=username, content = content)
+        new.save()
+        
+        
+        
+        
+        
+        
+        
+        return HttpResponse()
+

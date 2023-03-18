@@ -11,19 +11,19 @@
   <embed src="/media/{{post.course.code}}/{{post.filename}}" type="application/pdf" height="500" width="100%" >
   <div class="well">
     
-    <h2> POST TITLE 
+    <h2> {{post.title}}
       
     
       
     <button  disabled>votes:<p class="float-right" id="votes">{{votes}}</p></button>
-    <button style="border: 2px solid grey;" class = "{{colourLiked}}" id="upvote" data-postid="{{ post.id }}"  data-liked = "{{liked}}" data-username = "{{ user.id }}" style="width:30px;" type = "button" >+ </button><button  style="border: 2px solid grey;" class = "{{colourDisliked}}" id="downvote" style="width:30px;" data-postid="{{ post.id }}" data-disliked = "{{disliked}}">− </button>
+    <button style="border: 2px solid grey; color: white;" class = "{{colourLiked}}" id="upvote" data-postid="{{ post.id }}"  data-liked = "{{liked}}" data-username = "{{ user.id }}" style="width:30px;" type = "button" >+ </button><button  style="border: 2px solid grey; color: white;" class = "{{colourDisliked}}" id="downvote" style="width:30px;" data-postid="{{ post.id }}" data-disliked = "{{disliked}}">− </button>
     
 
     
     </h2>
   </h2>
   <h3>
-    Some stuff about the post will go here.  Some stuff about the post will go here.  Some stuff about the post will go here.  Some stuff about the post will go here.
+    {{post.description}}
     
     
     
@@ -34,9 +34,14 @@
   <hr class="solid">
 
   <div class="well">
-    <input type="search" id="site-search" name="search" placeholder="comment..." size="165">
+    <input type="search" id="site-search" name="search" placeholder="comment..." size="160">
 
-  <button class="float-right">comment</button>
+    
+    
+    
+      <button id = 'comment' data-postid="{{ post.id }}" data-username = "{{ user.id }}" class = 'float-left' value="Add comment">Add Comment</button> 
+    
+  
 
   <div class = "scroll">
     

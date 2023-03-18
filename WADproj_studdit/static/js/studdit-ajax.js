@@ -259,6 +259,26 @@ $(document).ready(function() {
             
             
     });
+
+    $('#comment').click(function() {
+      postIdVar = $(this).attr('data-postid');
+      postUserVar = $(this).attr('data-username');
+      
+      let html = document.getElementById("site-search").value;
+      alert(html)
+      document.getElementById("site-search").value = ""
+
+      $.get('/comment/',
+          {'post_id': postIdVar, 'content': html},
+          function(data) {
+          
+          }
+          )
+      location.reload();
+      return false;
+
+    
+    });
     
 
 

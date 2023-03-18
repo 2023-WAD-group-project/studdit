@@ -44,7 +44,7 @@ class Post(models.Model):
 class Comment(models.Model):
     # relational fields
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
 
     # actual fields
     content = models.CharField(max_length=1024*10, unique=True)

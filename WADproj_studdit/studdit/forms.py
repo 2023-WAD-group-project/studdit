@@ -1,5 +1,5 @@
 from django import forms 
-from studdit.models import Post ,Course, Student
+from studdit.models import Post ,Course, Student, Comment
 from django.contrib.auth.models import User
 from population_data import courses
 from django.utils import timezone
@@ -33,4 +33,6 @@ class PostForm(forms.ModelForm):
         #fields = ("course", "title", "description", "filename", "file", "slug")
         exclude = ("post_author", "upvoted_by", "downvoted_by", "course")
         fields = ("title", "description", "file", "filename")
+    
+
 
