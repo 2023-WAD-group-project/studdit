@@ -34,7 +34,7 @@
   <hr class="solid">
 
   <div class="well">
-    <input type="search" id="site-search" name="search" placeholder="comment..." size="160">
+    <input type="search" id="site-search" name="search" placeholder="comment..." size="128">
 
     
     
@@ -51,7 +51,7 @@
             {% for c in comment %}
       
       
-      <li class="list-group-item">{{ c.student.user}} says:  {{c.content}}<button class = "float-right" id="minus2" style="width:30px;">− </button><button class = "float-right" id="plus2" style="width:30px;">+ </button></li>
+      <li id = "comments" width = "100%" class="list-group-item">{{c.date}} {{ c.student}} says:  {{c.content}}<button class = "float-right" id="minus2" style="width:30px;">− </button><button class = "float-right" id="plus2" style="width:30px;">+ </button></li>
       
       {% endfor %}
       {% endif %}

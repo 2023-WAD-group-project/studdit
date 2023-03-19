@@ -85,4 +85,28 @@ button :hover {
     accent-color: #D8315B;
 }
 
+#comments {
+    color: black;
+    font-size: 18px;
+    padding: 8px;
+    border: 1px solid #FFFAFF;
+    border-radius: 15px;
+    margin: 1px;
+    word-wrap: break-word;
+
+}
+#plus2{
+    padding: 0px;
+}
+#minus2{
+    padding: 0px;
+}
+
+.scroll {
+    height: 200px;
+    overflow: scroll;
+}
+
+
+
 
