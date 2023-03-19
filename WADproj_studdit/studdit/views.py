@@ -1,10 +1,9 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from studdit.models import Post, Course, Student, Comment
 from django.views import View
 from django.conf import settings
 
-from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
@@ -23,17 +22,7 @@ def test(request):
     context_dict = {}
     return render(request, "test.html", context=context_dict)
 
-
-def course(request):
-    # note that this view wont be fully completed until we set up the database,
-    # so worry about the other views for now
-    #raise Exception("NOT IMPLEMENTED")
-
-    context_dict = {}
-    return render(request, "course.html", context=context_dict)
-
-
-
+@login_required
 def post(request, course_name_slug, slug):
     post = Post.objects.get(course=Course.objects.get(code=course_name_slug), slug=slug)
     comment = Comment.objects.filter(post=post).order_by('-date')
@@ -223,7 +212,6 @@ class DislikePostView(View):
         return HttpResponse()
     
 def user_login(request):
-    print("huh")
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
@@ -231,11 +219,11 @@ def user_login(request):
         user = authenticate(username=username, password=password)
 
         if not user:
-            print(f"failed: {username}, {password}")
+            print(f"failed log in: {username}")
             return redirect(reverse("login") + "?failed_login")
 
         login(request, user)
-        print(f"logged in: {username}, {password}")
+        print(f"successful log in: {username}")
         return redirect(reverse("profile"))
 
 
