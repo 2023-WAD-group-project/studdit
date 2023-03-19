@@ -6,10 +6,10 @@
 {% endblock %}
 
 
-{% block body_block %} 
+{% block body_block %}
   <input type="text" id="site-search" name="search" placeholder="Course Search..." size="80">
 
-  <button>Search</button>
+  <button onclick="searchAndUpdateCourses(document.getElementById('site-search').value)">Search</button>
 
   <hr class="solid">
 
@@ -19,14 +19,20 @@
     </div>
 
   <script>
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("courses_div").innerHTML = this.responseText;
-      }
-    };
-    xhttp.open("GET", "get_courses?format=xml&xml_fields[]=title&xml_fields[]=code&xml_fields[]=exis_mate&xml_fields[]=likes", true);
-    xhttp.send();
+    function searchAndUpdateCourses(searchStr)
+    {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("courses_div").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("GET", "get_courses?title=" + searchStr + "&format=xml&xml_fields[]=title&xml_fields[]=code&xml_fields[]=exis_mate&xml_fields[]=likes", true);
+      xhttp.send();
+    }
+
+    searchAndUpdateCourses("")
   </script>
+
 
 {% endblock %}
