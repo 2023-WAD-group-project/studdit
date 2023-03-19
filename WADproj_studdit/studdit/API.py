@@ -42,7 +42,7 @@ format - json or xml. if xml, we return a rendered template containing html to d
 """
 def json_fallback(obj):
     if isinstance(obj, datetime):
-        return obj.timestamp() # alternatively could use .isoformat() in future if need to change to printable date
+        return obj.timestamp() # alternatively could use .isoformat() in future if need to change to a printable date
     raise TypeError ("Type %s not serializable" % type(obj))
 def get_posts(request):
     arguments = request.GET

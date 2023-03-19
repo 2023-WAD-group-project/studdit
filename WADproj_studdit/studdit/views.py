@@ -122,6 +122,17 @@ def add_post(request, course_name_slug):
     context_dict = {'form': form, 'course': course}
     return render(request, 'add_post.html', context=context_dict)
 
+@login_required
+def delete_post(request, course_code, post_slug):
+    post = Post.objects.get(slug=post_slug)
+
+    if post.post_author.user == request.user:
+        print(f"deleting {post.title}")
+        post.delete()
+    else:
+        print(f"did not delete {post.title}")
+    return HttpResponse("something")
+
 class LikePostView(View):
     def get(self, request):
         if request.user.is_authenticated:

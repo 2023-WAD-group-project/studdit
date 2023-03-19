@@ -12,15 +12,13 @@ urlpatterns = [
 
     path("course/<slug:course_name_slug>/post/<slug:slug>", views.post, name="post"),
 
-    #path("add_post", views.add_post, name="add_post"), // need to add Post form to complete
+    path('course/<slug:course_code>/post/<slug:post_slug>/delete_post/', views.delete_post, name='delete_post'),
+
+    path('course/<slug:course_name_slug>/add_post/', views.add_post, name='add_post'),
 
     path("login", views.login_page, name="login"),
 
     path("profile", views.profile, name="profile"),
-
-    path('course/<slug:course_name_slug>/add_post/', views.add_post, name='add_post'),
-
-    #path('course/<slug:course_name_slug>/post/<slug:slug>/add_comment', views.add_post, name='add_comment'),
 
     path('like_post/', views.LikePostView.as_view(), name='like_post'),
 
