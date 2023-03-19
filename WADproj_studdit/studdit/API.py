@@ -37,6 +37,7 @@ endpoint docs:
 arguments:
 course - if this is specified, we filter the returnable to only include the posts associated with this course.
 student - if this is specified, we filter the returnable to only include posts created by the student with the specified username.
+title - if this is specified, we filter the returnable to only include posts containing the specififed string in the title.
 format - json or xml. if xml, we return a rendered template containing html to display the posts on a webpage.
 """
 def json_fallback(obj):
@@ -56,6 +57,9 @@ def get_posts(request):
 
     if "course" in arguments:
         posts = posts.filter(course_id__exact=arguments["course"])
+
+    if "title" in arguments:
+        posts = posts.filter(title__contains=arguments["title"])
 
 
     if arguments.get("format", "json") == "json":
