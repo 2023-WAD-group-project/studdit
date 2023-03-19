@@ -1104,4 +1104,5 @@ for i in range(len(courses)):
 
 courses.sort(key= lambda c: len(c["posts"]), reverse=True)
 
-print(courses)
+if __name__ == "__main__":
+    print(courses)

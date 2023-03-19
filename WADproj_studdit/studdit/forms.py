@@ -1,7 +1,6 @@
 from django import forms 
 from studdit.models import Post ,Course, Student, Comment
 from django.contrib.auth.models import User
-from population_data import courses
 from django.utils import timezone
 
 class UserForm(forms.ModelForm):
