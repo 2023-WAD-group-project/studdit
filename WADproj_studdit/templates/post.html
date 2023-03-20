@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+{% load static %}
 
 {% block title_block %}
     Post
@@ -16,7 +16,7 @@
     
       
     <button  disabled>votes:<p class="float-right" id="votes">{{votes}}</p></button>
-    <button style="border: 2px solid grey; color: white;" class = "{{colourLiked}}" id="upvote" data-postid="{{ post.id }}"  data-liked = "{{liked}}" data-username = "{{ user.id }}" style="width:30px;" type = "button" >+ </button><button  style="border: 2px solid grey; color: white;" class = "{{colourDisliked}}" id="downvote" style="width:30px;" data-postid="{{ post.id }}" data-disliked = "{{disliked}}">− </button>
+    <button  class = "{{colourLiked}}" id="upvote" data-postid="{{ post.id }}"  data-liked = "{{liked}}" data-username = "{{ user.id }}"  type = "button" >+ </button><button   class = "{{colourDisliked}}" id="downvote"  data-postid="{{ post.id }}" data-disliked = "{{disliked}}">− </button>
     
 
     
@@ -34,14 +34,14 @@
   <hr class="solid">
 
   <div class="well">
-    <input type="search" id="site-search" name="search" placeholder="comment..." size="128">
+    <input type="search" id="post-comment" name="search" placeholder="comment..." >
 
     
     
     
       <button id = 'comment' data-postid="{{ post.id }}" data-username = "{{ user.id }}" class = 'float-left' value="Add comment">Add Comment</button> 
     
-  
+  </div>
 
   <div class = "scroll">
     
@@ -51,13 +51,13 @@
             {% for c in comment %}
       
       
-      <li id = "comments" width = "100%" class="list-group-item">{{c.date}} {{ c.student}} says:  {{c.content}}<button class = "float-right" id="minus2" style="width:30px;">− </button><button class = "float-right" id="plus2" style="width:30px;">+ </button></li>
+      <li id = "comments"  class="list-group-item">{{c.date}} {{ c.student}} says:  {{c.content}}<button class = "float-right" id="minus2" >− </button><button class = "float-right" id="plus2" >+ </button></li>
       
       {% endfor %}
       {% endif %}
     </ul>
     
-  </div>
+  
 
 </div>
 {% endblock %}

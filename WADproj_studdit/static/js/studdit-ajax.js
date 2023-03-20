@@ -53,7 +53,7 @@ $(document).ready(function() {
           
           
             if (pressed2 == true || postUserDisliked == "true"){
-              alert("awawawaw")
+              
 
                 votes ++
               
@@ -107,7 +107,7 @@ $(document).ready(function() {
 
         }
         else{
-          alert("www")
+          
             
             
             votes --
@@ -180,7 +180,7 @@ $(document).ready(function() {
             pressed2 = true
 
             if (pressed == true || postUserLiked == "true"){
-                alert("awawawaw")
+                
                 votes --
               
             }
@@ -265,7 +265,7 @@ $(document).ready(function() {
       postUserVar = $(this).attr('data-username');
       
       let html = document.getElementById("site-search").value;
-      alert(html)
+      
       document.getElementById("site-search").value = ""
 
       $.get('/comment/',
