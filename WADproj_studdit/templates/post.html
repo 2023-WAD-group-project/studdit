@@ -8,55 +8,37 @@
 
 {% block body_block %}
 <div class = "container-fluid">
-  
-  <embed src="/media/{{post.course.code}}/{{post.filename}}" type="application/pdf" height="500" width="100%" >
+
+  <embed src="/media/{{post.course.code}}/{{post.filename}}" height="700" width="100%">
+
   <div class="well">
-    
-    <h2> {{post.title}}
-      
-    
-      
-    <button  disabled>votes:<p class="float-right" id="votes">{{votes}}</p></button>
-    <button  class = "{{colourLiked}}" id="upvote" data-postid="{{ post.id }}"  data-liked = "{{liked}}" data-username = "{{ user.id }}"  type = "button" >+ </button><button   class = "{{colourDisliked}}" id="downvote"  data-postid="{{ post.id }}" data-disliked = "{{disliked}}">− </button>
-    
-
-    
-    </h2>
+    <h2 class="d-inline" > {{post.title}} </h2>
+    <div class="float-right">
+      <button disabled>votes: {{votes}}</button>
+      <button class="{{colourLiked}}" id="upvote" data-postid="{{ post.id }}" data-liked="{{liked}}" data-username="{{ user.id }}" type = "button">+</button>
+      <button class="{{colourDisliked}}" id="downvote" data-postid="{{ post.id }}" data-disliked="{{disliked}}">−</button>
+    </div>
   </h2>
-  <h3>
-    {{post.description}}
-    
-    
-    
-
-  </h3>
+  <h3> {{post.description}} </h3>
   </div>
 
-  <hr class="solid">
+  <hr class="solid bg-light"></hr>
 
   <div class="well">
     <form action="{% url 'comment' post.course.code post.slug %}" method="post">
       {% csrf_token %}
+      <button id='comment' data-postid="{{ post.id }}" data-username="{{ user.id }}">Add Comment</button>
       <input type="search" id="post-comment" name="content" placeholder="comment..." >
-      <button id = 'comment' data-postid="{{ post.id }}" data-username = "{{ user.id }}" class = 'float-left' value="Add comment">Add Comment</button> 
     </form>
   </div>
 
-  <div class = "scroll">
-    
-    <ul class="list-group">
-      {% if comment %}
-        <ul>
-            {% for c in comment %}
-      
-      
-      <li id = "comments"  class="list-group-item">{{c.date}} {{ c.student.user.username}} says:  {{c.content}}</li>
-      
-      {% endfor %}
-      {% endif %}
-    </ul>
-    
-  
+  {% if comment %}
+  <div class="scroll w-100">
+        {% for c in comment %}
+        <li class="list-group-item mb-1" id="comments">{{c.date}} {{c.student.user.username}} says: {{c.content}}</li>
+        {% endfor %}
+  </div>
+  {% endif %}
 
 </div>
 {% endblock %}
