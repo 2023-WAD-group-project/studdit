@@ -42,4 +42,6 @@ urlpatterns = [
 
     path("change_username", views.change_username, name="change_username"),
 
+    path("change_password", views.change_password, name="change_password"),
+
 ]

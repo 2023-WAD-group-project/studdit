@@ -28,7 +28,7 @@
           {% csrf_token %}
             <h3>CHANGE USERNAME</h3>
             <h4>desired username:</h4>
-              <input type="text" class="form-control" name="username" placeholder="username" required="">
+              <input type="text" class="form-control" name="username" placeholder="username" required="true">
               <button class="btn-primary w-100" type="submit">change</button>
           </form>
         </div>
@@ -36,16 +36,17 @@
       <br />
       <div class="row">
         <div class="col">
-          <form>
+          <form action="{% url 'change_password' %}" method="post">
+            {% csrf_token %}
             <h3>CHANGE PASSWORD</h3>
             <div class="row">
               <div class="col">
                 <h4>previous password:</h4>
-                <input type="text" class="form-control" id="username" placeholder="********" required="">
+                <input type="password" class="form-control" name="newpass" placeholder="********" required="true">
               </div>
               <div class="col">
                 <h4>new<br />password:</h4>
-                <input type="text" class="form-control" id="username" placeholder="********" required="">
+                <input type="password" class="form-control" name="newpass_confirm" placeholder="********" required="true">
               </div>
             </div>
             <br />

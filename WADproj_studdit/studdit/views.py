@@ -300,10 +300,20 @@ def log_out(request):
     logout(request)
     return redirect(reverse("login"))
 
+@login_required
 def change_username(request):
     if request.method == 'POST':
         request.user.username = request.POST.get("username")
         request.user.save()
+
+    return redirect(reverse('home'))
+
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        if request.POST.get("newpass") == request.POST.get("newpass_confirm"):
+            request.user.set_password(request.POST.get("newpass"))
+            request.user.save()
 
     return redirect(reverse('home'))
 
