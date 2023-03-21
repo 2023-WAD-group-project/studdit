@@ -24,11 +24,12 @@
           </div>
         </div>
         <div class="col- ">
-          <form>
+          <form action="{% url 'change_username' %}" method="post">
+          {% csrf_token %}
             <h3>CHANGE USERNAME</h3>
             <h4>desired username:</h4>
-            <input type="text" class="form-control" id="username" placeholder="username" required="">
-            <button class="btn-primary w-100" type="submit">change</button>
+              <input type="text" class="form-control" name="username" placeholder="username" required="">
+              <button class="btn-primary w-100" type="submit">change</button>
           </form>
         </div>
       </div>

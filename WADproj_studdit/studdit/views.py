@@ -300,6 +300,13 @@ def log_out(request):
     logout(request)
     return redirect(reverse("login"))
 
+def change_username(request):
+    if request.method == 'POST':
+        request.user.username = request.POST.get("username")
+        request.user.save()
+
+    return redirect(reverse('home'))
+
 
 class CommentPost(View):
     def get(self, request):

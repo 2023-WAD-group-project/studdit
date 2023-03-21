@@ -40,4 +40,6 @@ urlpatterns = [
 
     path("logout", views.log_out, name="logout"),
 
+    path("change_username", views.change_username, name="change_username"),
+
 ]
