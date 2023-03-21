@@ -34,13 +34,11 @@
   <hr class="solid">
 
   <div class="well">
-    <input type="search" id="post-comment" name="search" placeholder="comment..." >
-
-    
-    
-    
+    <form action="{% url 'comment' post.course.code post.slug %}" method="post">
+      {% csrf_token %}
+      <input type="search" id="post-comment" name="content" placeholder="comment..." >
       <button id = 'comment' data-postid="{{ post.id }}" data-username = "{{ user.id }}" class = 'float-left' value="Add comment">Add Comment</button> 
-    
+    </form>
   </div>
 
   <div class = "scroll">
@@ -51,7 +49,7 @@
             {% for c in comment %}
       
       
-      <li id = "comments"  class="list-group-item">{{c.date}} {{ c.student}} says:  {{c.content}}<button class = "float-right" id="minus2" >− </button><button class = "float-right" id="plus2" >+ </button></li>
+      <li id = "comments"  class="list-group-item">{{c.date}} {{ c.student.user.username}} says:  {{c.content}}<button class = "float-right" id="minus2" >− </button><button class = "float-right" id="plus2" >+ </button></li>
       
       {% endfor %}
       {% endif %}

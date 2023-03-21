@@ -32,6 +32,14 @@ class PostForm(forms.ModelForm):
         #fields = ("course", "title", "description", "filename", "file", "slug")
         exclude = ("post_author", "upvoted_by", "downvoted_by", "course")
         fields = ("title", "description", "file", "filename")
-    
+
+
+class CommentForm(forms.ModelForm):
+
+    content = forms.CharField(max_length=1024*10)
+
+    class Meta:
+        model = Comment
+        fields = ("content",)
 
 

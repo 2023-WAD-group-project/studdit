@@ -12,6 +12,8 @@ urlpatterns = [
 
     path("course/<slug:course_name_slug>/post/<slug:slug>", views.post, name="post"),
 
+    path('course/<slug:course_name_slug>/post/<slug:post_slug>/comment', views.add_comment, name='comment'),
+
     path('course/<slug:course_code>/post/<slug:post_slug>/delete_post/', views.delete_post, name='delete_post'),
 
     path('course/<slug:course_name_slug>/add_post/', views.add_post, name='add_post'),
@@ -25,8 +27,6 @@ urlpatterns = [
     path("test", views.test, name="test"),
 
     path('dislike_post/', views.DislikePostView.as_view(), name='dislike_post'),
-
-    path('comment/', views.CommentPost.as_view(), name='comment'),
 
     # API endpoints
     path("get_courses", get_courses, name="API_get_courses"),

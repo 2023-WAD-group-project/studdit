@@ -7,7 +7,7 @@ from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from studdit.forms import PostForm, UserForm
+from studdit.forms import PostForm, UserForm, CommentForm
 
 import os
 # Create your views here.
@@ -115,6 +115,48 @@ def add_post(request, course_name_slug):
                     f.write(chunk)
 
             return redirect(reverse('show_course', kwargs={'course_name_slug': course_name_slug}))
+    else:
+        print("form errors:")
+        print(form.errors)
+
+    context_dict = {'form': form, 'course': course}
+    return render(request, 'add_post.html', context=context_dict)
+
+@login_required
+def add_comment(request, course_name_slug, post_slug):
+    try:
+        course = Course.objects.get(code=course_name_slug)
+    except Course.DoesNotExist:
+        course = None
+
+    if course is None:
+        return redirect(reverse('home'))
+
+    try:
+        post = Post.objects.get(slug=post_slug)
+    except Post.DoesNotExist:
+        post = None
+
+    if course is None:
+        return redirect(reverse('home'))
+    if post is None:
+        return redirect(reverse('home'))
+
+
+    form = CommentForm()
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+
+    if form.is_valid():
+        if course:
+            comment = form.save(commit=False)
+            comment.course = course
+            comment.post = post
+            comment.student = Student.objects.get(user=request.user)
+            comment.save()
+
+            return redirect(reverse('post', kwargs={'course_name_slug': course_name_slug, 'slug': post_slug}))
     else:
         print("form errors:")
         print(form.errors)
