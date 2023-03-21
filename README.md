@@ -11,6 +11,6 @@
 - [x] database
 - [x] database population script
 - [x] actual functionality of the website
-- [x] unit tests
+- [ ] unit tests
 - [ ] seperate out CSS & JS from html, into seperate .css .js files
 - [ ] make sure URLs are relative (ie. use the {% url ... %} tag
