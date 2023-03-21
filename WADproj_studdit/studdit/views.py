@@ -24,13 +24,15 @@ def test(request):
 
 @login_required
 def post(request, course_name_slug, slug):
+    #gets the post object
     post = Post.objects.get(course=Course.objects.get(code=course_name_slug), slug=slug)
+    #get the comment objects and filter by date
     comment = Comment.objects.filter(post=post).order_by('-date')
     votes = post.upvotes - post.downvotes
     if request.user.is_authenticated:
         username = request.user.id
     print(username)
-
+    #this logic here just determines whether the user has upvotes or downvoted the post and then makes sure that button are the appropriate colours.
     if post.upvoted_by.filter(id=username).exists():
         liked = "true"
         colourLiked = "btn btn-success"
@@ -179,7 +181,8 @@ class LikePostView(View):
     def get(self, request):
         if request.user.is_authenticated:
             username = request.user.id
-        
+
+        #fetch the data posted by ajax
         post_id = request.GET['post_id']
         not_pressed = request.GET['not_pressed']
         
@@ -198,6 +201,7 @@ class LikePostView(View):
         
         
         print(username)
+        #this logic determines whether a user is upvoting or widthrawing their upvote from a post and then acts accordingly
         if post.upvoted_by.filter(id=username).exists():
             
             post.upvoted_by.remove(request.user)
@@ -228,6 +232,7 @@ class DislikePostView(View):
         if request.user.is_authenticated:
             username = request.user.id
         print("green")
+        #fetch the data posted by ajax
         post_id = request.GET['post_id']
         not_pressed = request.GET['not_pressed']
         
@@ -240,6 +245,7 @@ class DislikePostView(View):
         except ValueError:
             return HttpResponse(-1)
         
+        #this logic determines whether a user is downvoting or widthrawing their downvote from a post and then acts accordingly
         if post.downvoted_by.filter(id=username).exists():
             print("rry")
             
