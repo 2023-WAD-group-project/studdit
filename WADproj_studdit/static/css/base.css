@@ -87,7 +87,7 @@ button :hover {
 
 #comments {
     color: black;
-    font-size: 18px;
+    font-size: 16px;
     padding: 8px;
     border: 1px solid #FFFAFF;
     border-radius: 15px;
@@ -103,7 +103,7 @@ button :hover {
 #post-comment{
     width: 89%;
     float: right;
-    font-size: 18px;
+    font-size: 16px;
     padding: 8px;
     border: 1px solid #FFFAFF;
     border-radius: 15px;
@@ -112,6 +112,8 @@ button :hover {
 }
 #comment{
     width: 10%;
+    font-size: 16px;
+    padding: 8px;
 }
 #plus2{
     padding: 0px;
@@ -127,7 +129,7 @@ button :hover {
     height: 200px;
     overflow: scroll;
     float: right; 
-    width: 91.6%;
+    width: 92.3%;
     
 }
 #upvote{
