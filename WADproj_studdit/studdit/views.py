@@ -10,6 +10,8 @@ from django.contrib.auth.decorators import login_required
 from studdit.forms import PostForm, UserForm, CommentForm
 
 import os
+import re
+regex = re.compile(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@student.gla.ac.uk')
 # Create your views here.
 
 @login_required
@@ -77,8 +79,6 @@ def show_course(request, course_name_slug):
         context_dict['course'] = None
         context_dict['posts'] = None
     return render(request, 'course.html', context=context_dict)
-
-
 
 def login_page(request):
     context_dict = {}
@@ -285,21 +285,32 @@ def user_login(request):
         print(f"successful log in: {username}")
         return redirect(reverse("profile"))
 
-
+def isValid(email):
+    if re.fullmatch(regex, email):
+      print("Valid email")
+      return True
+    else:
+      print("Invalid email")
+      return False
+    
 def register(request):
     if request.method == "POST":
         user_form = UserForm(request.POST)
 
         if user_form.is_valid():
             user = user_form.save()
+            print(user.email)
+            if isValid(user.email):
+                user.set_password(user.password)
+                user.save()
 
-            user.set_password(user.password)
-            user.save()
+                student = Student.objects.get_or_create(user=user)
 
-            student = Student.objects.get_or_create(user=user)
-
-            return redirect(reverse("profile"))
+                return redirect(reverse("profile"))
     return redirect(reverse("login"))
+
+
+
 
 @login_required
 def log_out(request):

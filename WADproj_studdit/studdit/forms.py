@@ -4,11 +4,16 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 class UserForm(forms.ModelForm):
+    email = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput())
-     
+    
     class Meta:
         model = User
         fields = ('username', 'password', 'email',)
+
+    def email(self):
+        return self.email
+
                                
 
 # agreed to leaving out courseForm as courses can be added manually (by admin)
