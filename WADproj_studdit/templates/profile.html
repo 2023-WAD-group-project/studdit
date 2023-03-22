@@ -7,6 +7,9 @@
 
 {% block body_block %}
 
+<!-- a div dedicated to holding info from the django template engine, for javascript to use -->
+<div hidden id="template_data" data-get_posts_url="{% url 'API_get_posts' %}" data-user_username="{{user.username}}"> </div>
+
 <div class="container-fluid">
 
   <div class="row">
@@ -92,19 +95,8 @@
   <div class="row">
     <div class="container px-0">
       <h3>my posts:</h3>
-      <div id="posts_div" class="card-columns">
-        <script>
-          var xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("posts_div").innerHTML = this.responseText;
-            console.log(this.responseText)
-            }
-          };
-          xhttp.open("GET", "{% url 'API_get_posts' %}?format=xml&student={{user.username}}&xml_fields[]=votes&xml_fields[]=delete", true);
-          xhttp.send();
-        </script>
-      </div>
+      <div id="posts_div" class="card-columns" > </div>
+      <script src="{% static 'js/profile.js' %}" > </script>
     </div>
   </div>
 </div>
