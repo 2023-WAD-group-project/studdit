@@ -164,7 +164,7 @@ def add_comment(request, course_name_slug, post_slug):
         print(form.errors)
 
     context_dict = {'form': form, 'course': course}
-    return render(request, 'add_post.html', context=context_dict)
+    return redirect(reverse('post', kwargs={'course_name_slug': course_name_slug, 'slug': post_slug}))
 
 @login_required
 def delete_post(request, course_code, post_slug):
