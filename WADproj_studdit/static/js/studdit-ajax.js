@@ -8,13 +8,14 @@ $(document).ready(function() {
         
         pressed2 = false;
         pressed = false
-        count = 5
+        
         var votes = document.getElementById('votes').innerText
         parseInt(votes)
 
 
 
     $('#upvote').click(function() {
+      
       downvote.style.backgroundColor = "grey"
         
         

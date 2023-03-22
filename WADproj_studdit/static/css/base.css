@@ -124,6 +124,10 @@ button :hover {
     width:30px;
 
 }
+#votes{
+    padding: 0px;
+    width:10px;
+}
 
 .scroll {
     height: 200px;
