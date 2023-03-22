@@ -8,7 +8,7 @@
 {% block body_block %}
 
 <!-- a div dedicated to holding info from the django template engine, for javascript to use -->
-<div hidden id="template_data" data-get_posts_url="{% url 'API_get_posts' %}" data-user_username="{{user.username}}"> </div>
+<div hidden id="template_data" data-get_posts_url="{% url 'API_get_posts' %}" data-user_username="{{ user.username }}"> </div>
 
 <div class="container-fluid">
 
@@ -96,10 +96,12 @@
     <div class="container px-0">
       <h3>my posts:</h3>
       <div id="posts_div" class="card-columns" > </div>
-      <script src="{% static 'js/profile.js' %}" > </script>
     </div>
   </div>
 </div>
 
+{% endblock %}
 
+{% block extra_js_block %}
+  <script src="{% static 'js/profile.js' %}" > </script>
 {% endblock %}
