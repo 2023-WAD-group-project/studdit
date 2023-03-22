@@ -3,8 +3,8 @@
   <div class="course_card card bg-secondary text-white text-center p-3">
     {% if "title" in settings %}<h4>{{ course.title }}</h4>{% endif %}
     {% if "code" in settings %}<h6>{{ course.code }}</h6>{% endif %}
-    {% if "exis_mate" in settings %}<h6>Existing Materials: xx</h6>{% endif %}
-    {% if "likes" in settings %}<h6>Total Likes in This Course: xxxx</h6>{% endif %}
+    {% if "exis_mate" in settings %}<h6>Existing Materials: {{ course.existing_materials }}</h6>{% endif %}
+    {% if "likes" in settings %}<h6>Total Likes in This Course:  {{ course.net_votes }} </h6>{% endif %}
   </div>
 </a>
 {% endfor %}

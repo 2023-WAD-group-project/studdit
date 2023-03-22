@@ -12,6 +12,12 @@ class Course(models.Model):
     code = models.CharField(max_length=16, primary_key=True)
     title = models.CharField(max_length=32)
 
+    def existing_materials(self):
+        return len(Post.objects.filter(course=self))
+
+    def net_votes(self):
+        return sum([x.net_votes() for x in Post.objects.filter(course=self)])
+
 class Post(models.Model):
     # relational fields
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
@@ -33,7 +39,10 @@ class Post(models.Model):
         return self.upvoted_by.count()
     
     def total_downvotes(self):
-        return self.upvoted_by.count()
+        return self.downvoted_by.count()
+
+    def net_votes(self):
+        return self.upvoted_by.count() - self.downvoted_by.count()
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
