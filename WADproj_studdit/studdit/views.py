@@ -323,7 +323,7 @@ def change_username(request):
         request.user.username = request.POST.get("username")
         request.user.save()
 
-    return redirect(reverse('home'))
+    return redirect(reverse('profile'))
 
 @login_required
 def change_password(request):
@@ -332,7 +332,7 @@ def change_password(request):
             request.user.set_password(request.POST.get("newpass"))
             request.user.save()
 
-    return redirect(reverse('home'))
+    return redirect(reverse('profile'))
 
 
 class CommentPost(View):
