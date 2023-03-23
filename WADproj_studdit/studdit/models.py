@@ -59,13 +59,6 @@ class Comment(models.Model):
     content = models.CharField(max_length=1024*10, unique=True)
     date = models.DateTimeField(auto_now_add=True) # the auto now add param tells Django to use the date of when this entry is saved
 
-    upvoted_by = models.ManyToManyField(Student, related_name='comment_upvotedby', blank = True)
-    downvoted_by = models.ManyToManyField(Student, related_name='comment_downvotedby', blank = True)
-
-    def total_upvotes(self):
-        return self.upvoted_by.count()
     
-    def total_downvotes(self):
-        return self.upvoted_by.count()
 
 
