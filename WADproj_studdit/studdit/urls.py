@@ -22,6 +22,8 @@ urlpatterns = [
 
     path("profile", views.profile, name="profile"),
 
+    path("profile/delete_account", views.delete_account, name="delete_account"),
+
     path('like_post/', views.LikePostView.as_view(), name='like_post'),
 
     path("test", views.test, name="test"),

@@ -175,7 +175,7 @@ def delete_post(request, course_code, post_slug):
         post.delete()
     else:
         print(f"did not delete {post.title}")
-    return HttpResponse("something")
+    return redirect(reverse("profile"))
 
 class LikePostView(View):
     def get(self, request):
@@ -333,6 +333,11 @@ def change_password(request):
             request.user.save()
 
     return redirect(reverse('profile'))
+
+@login_required
+def delete_account(request):
+    request.user.delete()
+    return redirect(reverse('login'))
 
 
 class CommentPost(View):

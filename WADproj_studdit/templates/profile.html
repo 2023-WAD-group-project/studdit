@@ -77,7 +77,8 @@
 
       <br />
 
-      <form class="row">
+      <form class="row" action="{% url 'delete_account' %}" method="post">
+        {% csrf_token %}
         <div class="col-">
           <button class="btn-danger d-inline" type="submit">DELETE<br />ACCOUNT</button>
         </div>
