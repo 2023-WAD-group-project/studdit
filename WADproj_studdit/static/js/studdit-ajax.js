@@ -264,7 +264,7 @@ $(document).ready(function() {
     $('#comment').click(function() {
       postIdVar = $(this).attr('data-postid');
       postUserVar = $(this).attr('data-username');
-      alert("ffhhs")
+      
       
       let html = document.getElementById("site-search").value;
       

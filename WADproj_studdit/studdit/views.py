@@ -340,25 +340,5 @@ def delete_account(request):
     return redirect(reverse('login'))
 
 
-class CommentPost(View):
-    def get(self, request):
-        if request.user.is_authenticated:
-            username = request.user
 
-        
-        post_id = request.GET['post_id']
-        post = Post.objects.get(id=str(post_id))
-        content = request.GET['content']
-        print(post_id.__class__)
-        print(content)
-        new = Comment(post=post,student=username, content = content)
-        new.save()
-        
-        
-        
-        
-        
-        
-        
-        return HttpResponse()
 

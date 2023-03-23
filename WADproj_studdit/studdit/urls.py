@@ -1,6 +1,6 @@
 from django.urls import path
 from studdit import views
-from studdit.views import LikePostView, CommentPost
+from studdit.views import LikePostView
 
 from studdit.API import get_courses, get_posts
 
