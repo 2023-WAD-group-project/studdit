@@ -113,7 +113,10 @@ def add_post(request, course_name_slug):
             post.save()
 
             dest_folder = os.path.join(settings.MEDIA_ROOT, course_name_slug)
-            os.mkdir(dest_folder)
+
+            try: os.mkdir(dest_folder)
+            except FileExistsError: pass
+
             with open(os.path.join(dest_folder, post.filename), 'wb+') as f:
                 for chunk in request.FILES["file"].chunks():
                     f.write(chunk)
