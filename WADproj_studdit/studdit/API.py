@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from studdit.models import Course, Post
 from datetime import datetime
+from django.db.models import Count
+
 
 # from django.core import serializers
 import json
@@ -17,7 +19,7 @@ def get_courses(request):
     arguments = request.GET
     print(arguments)
 
-    courses = Course.objects.filter(title__contains=arguments.get("title", ""))
+    courses = Course.objects.filter(title__contains=arguments.get("title", "")).annotate(existing=Count('post')).order_by('-existing')
 
     if arguments.get("showempty", "false") != "true":
         courses = set(courses.filter(post__isnull=False))

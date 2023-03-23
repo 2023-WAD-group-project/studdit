@@ -112,7 +112,9 @@ def add_post(request, course_name_slug):
             post.views = 0
             post.save()
 
-            with open(os.path.join(settings.MEDIA_ROOT, course_name_slug, post.filename), 'wb+') as f:
+            dest_folder = os.path.join(settings.MEDIA_ROOT, course_name_slug)
+            os.mkdir(dest_folder)
+            with open(os.path.join(dest_folder, post.filename), 'wb+') as f:
                 for chunk in request.FILES["file"].chunks():
                     f.write(chunk)
 
