@@ -12,6 +12,12 @@ class Course(models.Model):
     code = models.CharField(max_length=16, primary_key=True)
     title = models.CharField(max_length=32)
 
+    def existing_materials(self):
+        return len(Post.objects.filter(course=self))
+
+    def net_votes(self):
+        return sum([x.net_votes() for x in Post.objects.filter(course=self)])
+
 class Post(models.Model):
     # relational fields
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
@@ -33,7 +39,10 @@ class Post(models.Model):
         return self.upvoted_by.count()
     
     def total_downvotes(self):
-        return self.upvoted_by.count()
+        return self.downvoted_by.count()
+
+    def net_votes(self):
+        return self.upvoted_by.count() - self.downvoted_by.count()
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
@@ -50,13 +59,6 @@ class Comment(models.Model):
     content = models.CharField(max_length=1024*10, unique=True)
     date = models.DateTimeField(auto_now_add=True) # the auto now add param tells Django to use the date of when this entry is saved
 
-    upvoted_by = models.ManyToManyField(Student, related_name='comment_upvotedby', blank = True)
-    downvoted_by = models.ManyToManyField(Student, related_name='comment_downvotedby', blank = True)
-
-    def total_upvotes(self):
-        return self.upvoted_by.count()
     
-    def total_downvotes(self):
-        return self.upvoted_by.count()
 
 

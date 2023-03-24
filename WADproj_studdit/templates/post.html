@@ -9,12 +9,12 @@
 {% block body_block %}
 <div class = "container-fluid">
 
-  <embed src="/media/{{post.course.code}}/{{post.filename}}" height="700" width="100%">
+  <embed src="{% get_media_prefix %}{{post.course.code}}/{{post.filename}}" height="700" width="100%">
 
   <div class="well">
     <h2 class="d-inline" > {{post.title}} </h2>
     <div class="float-right">
-      <button disabled>votes: {{votes}}</button>
+      <button  disabled>votes:<p class="float-right" id="votes">{{votes}}</p></button>
       <button class="{{colourLiked}}" id="upvote" data-postid="{{ post.id }}" data-liked="{{liked}}" data-username="{{ user.id }}" type = "button">+</button>
       <button class="{{colourDisliked}}" id="downvote" data-postid="{{ post.id }}" data-disliked="{{disliked}}">−</button>
     </div>
@@ -41,4 +41,9 @@
   {% endif %}
 
 </div>
+{% endblock %}
+
+
+{% block extra_js_block %}
+  <script src="{% static 'js/post.js' %}" > </script>
 {% endblock %}

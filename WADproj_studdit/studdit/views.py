@@ -10,6 +10,8 @@ from django.contrib.auth.decorators import login_required
 from studdit.forms import PostForm, UserForm, CommentForm
 
 import os
+import re
+regex = re.compile(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@student.gla.ac.uk')
 # Create your views here.
 
 @login_required
@@ -78,8 +80,6 @@ def show_course(request, course_name_slug):
         context_dict['posts'] = None
     return render(request, 'course.html', context=context_dict)
 
-
-
 def login_page(request):
     context_dict = {}
     return render(request, "login.html", context=context_dict)
@@ -112,7 +112,12 @@ def add_post(request, course_name_slug):
             post.views = 0
             post.save()
 
-            with open(os.path.join(settings.MEDIA_ROOT, course_name_slug, post.filename), 'wb+') as f:
+            dest_folder = os.path.join(settings.MEDIA_ROOT, course_name_slug)
+
+            try: os.mkdir(dest_folder)
+            except FileExistsError: pass
+
+            with open(os.path.join(dest_folder, post.filename), 'wb+') as f:
                 for chunk in request.FILES["file"].chunks():
                     f.write(chunk)
 
@@ -164,7 +169,7 @@ def add_comment(request, course_name_slug, post_slug):
         print(form.errors)
 
     context_dict = {'form': form, 'course': course}
-    return render(request, 'add_post.html', context=context_dict)
+    return redirect(reverse('post', kwargs={'course_name_slug': course_name_slug, 'slug': post_slug}))
 
 @login_required
 def delete_post(request, course_code, post_slug):
@@ -175,7 +180,7 @@ def delete_post(request, course_code, post_slug):
         post.delete()
     else:
         print(f"did not delete {post.title}")
-    return HttpResponse("something")
+    return redirect(reverse("profile"))
 
 class LikePostView(View):
     def get(self, request):
@@ -285,21 +290,32 @@ def user_login(request):
         print(f"successful log in: {username}")
         return redirect(reverse("profile"))
 
-
+def isValid(email):
+    if re.fullmatch(regex, email):
+      print("Valid email")
+      return True
+    else:
+      print("Invalid email")
+      return False
+    
 def register(request):
     if request.method == "POST":
         user_form = UserForm(request.POST)
 
         if user_form.is_valid():
             user = user_form.save()
+            print(user.email)
+            if isValid(user.email):
+                user.set_password(user.password)
+                user.save()
 
-            user.set_password(user.password)
-            user.save()
+                student = Student.objects.get_or_create(user=user)
 
-            student = Student.objects.get_or_create(user=user)
-
-            return redirect(reverse("profile"))
+                return redirect(reverse("profile"))
     return redirect(reverse("login"))
+
+
+
 
 @login_required
 def log_out(request):
@@ -312,7 +328,7 @@ def change_username(request):
         request.user.username = request.POST.get("username")
         request.user.save()
 
-    return redirect(reverse('home'))
+    return redirect(reverse('profile'))
 
 @login_required
 def change_password(request):
@@ -321,28 +337,13 @@ def change_password(request):
             request.user.set_password(request.POST.get("newpass"))
             request.user.save()
 
-    return redirect(reverse('home'))
+    return redirect(reverse('profile'))
+
+@login_required
+def delete_account(request):
+    request.user.delete()
+    return redirect(reverse('login'))
 
 
-class CommentPost(View):
-    def get(self, request):
-        if request.user.is_authenticated:
-            username = request.user
 
-        
-        post_id = request.GET['post_id']
-        post = Post.objects.get(id=str(post_id))
-        content = request.GET['content']
-        print(post_id.__class__)
-        print(content)
-        new = Comment(post=post,student=username, content = content)
-        new.save()
-        
-        
-        
-        
-        
-        
-        
-        return HttpResponse()
 
