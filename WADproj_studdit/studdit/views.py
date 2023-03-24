@@ -329,13 +329,18 @@ def log_out(request):
 @login_required
 def change_username(request):
     if request.method == 'POST':
-        request.user.username = request.POST.get("username")
-        request.user.save()
+        try:
+            request.user.username = request.POST.get("username")
+            request.user.save()
+        except:
+            pass
+
 
     return redirect(reverse('profile'))
 
 @login_required
 def change_password(request):
+    
     if request.method == 'POST':
         if request.POST.get("newpass") == request.POST.get("newpass_confirm"):
             request.user.set_password(request.POST.get("newpass"))
