@@ -284,7 +284,7 @@ def user_login(request):
         user = authenticate(username=username, password=password)
 
         if not user:
-            print(f"failed log in: {username}")
+            messages.error(request, 'Invalid username or password')
             return redirect(reverse("login") + "?failed_login")
 
         login(request, user)
@@ -314,7 +314,7 @@ def register(request):
                 student = Student.objects.get_or_create(user=user)
 
                 return redirect(reverse("profile"))
-            messages.success(request, 'Sign up unsuccessful!')
+            messages.error(request, 'Invalid email - use a UofG email address.')
 
     return redirect(reverse("login"))
 

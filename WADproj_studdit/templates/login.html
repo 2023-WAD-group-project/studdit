@@ -21,7 +21,7 @@
     </head>
 
     <body class="text-center">
-      <div class="header m-0 p-0">
+      <div class="header m-0 p-0 width-100">
         <h1 class="h1" >Studdit</h2>
       </div>
       <div class="container mt-100">
@@ -71,13 +71,6 @@
                   </label>
                 </div>
                   <button class="btn-primary" type="submit">Sign Up</button>
-                  {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
-{% endif %}
 
 
               </form>  
@@ -89,9 +82,14 @@
         <div id="content-wrap">
           <!-- all other page content -->
         </div>
-        <footer class = "footer">
-          <p class="float-right"><a href="#">Back to top</a></p>
-          <p>&copy; 2022 Studdit &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+        <footer class="font_weight_bold" style="list-style-type: none;">
+          {% if messages %}
+          <ul class="messages">
+              {% for message in messages %}
+                  <b><li style="font-size:20px;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li></b>
+              {% endfor %}
+          </ul>
+      {% endif %}
       </footer>
       </div>
     </body>
