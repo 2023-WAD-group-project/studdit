@@ -1,9 +1,28 @@
+html {
+    height: 100%;  
+    box-sizing: border-box;    
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;       /* enable the "border-box effect" everywhere */
+}
+
 body {
     margin:0;
     font-family: 'Prompt', sans-serif;
     color: #FFFAFF;
     background-color: #1E1B18;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    position: relative;    
+    min-height: 100%;        
+    padding-bottom: 6rem;
 }
+
 
 h1 {
     font-family:'Prompt', sans-serif;
@@ -54,8 +73,9 @@ button :hover {
     padding: 10px;
     bottom: 0;
     overflow: hidden;
-    position: fixed;
+    position: relative;
     width: 100%;
+    
 }
 
 .course_card, .post_card {
