@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from studdit.models import Post, Course, Student, Comment
 from django.views import View
+from django.contrib import messages
 from django.conf import settings
 
 from django.contrib.auth import authenticate, login, logout
@@ -308,10 +309,13 @@ def register(request):
             if isValid(user.email):
                 user.set_password(user.password)
                 user.save()
+                messages.success(request, 'Sign up successful!')
 
                 student = Student.objects.get_or_create(user=user)
 
                 return redirect(reverse("profile"))
+            messages.success(request, 'Sign up unsuccessful!')
+
     return redirect(reverse("login"))
 
 
