@@ -236,7 +236,9 @@ comp_y2 = [
                 "title": "Rango book",
                 "filename": "(TWD e-book) twd-uog-lib-2021-01-07.pdf",
                 "description": "this is the ebook for rango",
-                "author": 1
+                "author": 1,
+                "downvotes": [0],
+                "comments": [(1, "not sure why this post is here, it's already available on moodle")]
             },
             {
                 "title": "rango image",
@@ -1079,7 +1081,9 @@ phys_y2 = [
             {
                 "title": "Phys2T bash scripting guide",
                 "filename": "BashScriptingGuide.pdf",
-                "description": "this is the bash scripting guide containing good practice for bash scripting"
+                "description": "this is the bash scripting guide containing good practice for bash scripting",
+                "upvotes": [0],
+                "comments": [(1, "note that this is also available on the moodle page")]
             }
         ]
     },

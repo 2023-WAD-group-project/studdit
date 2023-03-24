@@ -12,7 +12,7 @@ import population_data
 import shutil
 
 def add_comment(post, student, content):
-    comment = Comment.objects.get_or_create(post=post, conent=content)
+    comment = Comment.objects.get_or_create(post=post, student=student, content=content)
 
 def add_student():
     pass
@@ -31,6 +31,16 @@ def add_course(code, title):
     course = Course.objects.get_or_create(code=code, title=title)[0]
     course.save()
     return course
+
+def add_upvotes(post, student):
+    post.upvoted_by.add(student.user)
+    post.upvotes += 1
+    post.save()
+
+def add_downvotes(post, student):
+    post.downvoted_by.add(student.user)
+    post.downvotes -= 1
+    post.save()
 
 def do_managepy_command(cmd):
     cmd = "manage.py " + cmd
@@ -94,7 +104,16 @@ def populate():
         for post in course_data["posts"]:
             print(post)
             print(course_data["posts"])
-            add_post(course, authors[post.get("author", 0)], post["title"], post["filename"], post["description"])
+            post_obj = add_post(course, authors[post.get("author", 0)], post["title"], post["filename"], post["description"])
+
+            for comment in post.get("comments", []):
+                add_comment(post=post_obj, student=authors[comment[0]], content=comment[1])
+
+            for upvotee in post.get("upvotes", []):
+                add_upvotes(post_obj, authors[upvotee])
+
+            for downvotee in post.get("downvotes", []):
+                add_downvotes(post_obj, authors[downvotee])
 
     src = os.path.join("population_files", "media")
     dest = "media"
