@@ -2,12 +2,13 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from studdit.models import Post, Course, Student, Comment
 from django.views import View
+from django.contrib import messages
 from django.conf import settings
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from studdit.forms import PostForm, UserForm, CommentForm
+from studdit.forms import PostForm, CourseForm, UserForm, CommentForm
 
 import os
 import re
@@ -283,7 +284,7 @@ def user_login(request):
         user = authenticate(username=username, password=password)
 
         if not user:
-            print(f"failed log in: {username}")
+            messages.error(request, 'Invalid username or password')
             return redirect(reverse("login") + "?failed_login")
 
         login(request, user)
@@ -308,10 +309,16 @@ def register(request):
             if isValid(user.email):
                 user.set_password(user.password)
                 user.save()
+                messages.success(request, 'Sign up successful!')
 
                 student = Student.objects.get_or_create(user=user)
 
+                login(request, user)
+                print(f"successful log in: {user.username}")
+
                 return redirect(reverse("profile"))
+            messages.error(request, 'Invalid email - use a UofG email address.')
+
     return redirect(reverse("login"))
 
 
@@ -344,6 +351,15 @@ def delete_account(request):
     request.user.delete()
     return redirect(reverse('login'))
 
+@login_required
+def request_course(request):
+    if request.method == 'POST':
+        form = CourseForm(request.POST, request.FILES)
+        if form.is_valid():
+            course = form.save()
 
-
-
+            return redirect(reverse('show_course', kwargs={'course_name_slug': course.code}))
+        else:
+            print("form errors:")
+            print(form.errors)
+    return redirect(request.META['HTTP_REFERER'])

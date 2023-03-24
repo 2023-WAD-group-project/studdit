@@ -18,10 +18,9 @@
     <link href="https://getbootstrap.com/docs/4.2/examples/dashboard/dashboard.css" rel="stylesheet">
     <link href="/static/css/base.css" rel="stylesheet">
     </head>
-
-    <body style="text-align:center">
-      <div class="header extends m-0 p-0">
-        <h1 class="h1" >Studdit</h1>
+    <body class="text-center">
+      <div class="header m-0 p-0 w-100">
+        <h1 class="h1" >Studdit</h2>
       </div>
       <div class="container mt-100">
         <div class="row">
@@ -70,11 +69,30 @@
                   </label>
                 </div>
                   <button class="btn-primary" type="submit">Sign Up</button>
+
+
               </form>  
             </div>
           </div> 
         </div>
       </div>
+<<<<<<< HEAD
+=======
+      <div id="page-container">
+        <div id="content-wrap">
+          <!-- all other page content -->
+        </div>
+        <footer class="font_weight_bold" style="list-style-type: none;">
+          {% if messages %}
+          <ul class="messages">
+              {% for message in messages %}
+                  <b><li style="font-size:20px;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li></b>
+              {% endfor %}
+          </ul>
+      {% endif %}
+      </footer>
+      </div>
+>>>>>>> 80a4378d2275d13534ed3159250f33d8a45d806d
     </body>
     
 </html>
