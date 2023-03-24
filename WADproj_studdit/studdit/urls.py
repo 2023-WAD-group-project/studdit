@@ -8,6 +8,8 @@ from studdit.API import get_courses, get_posts
 urlpatterns = [
     path("home", views.home, name="home"),
 
+    path("", views.home, name="index"),
+
     path('course/<slug:course_name_slug>/', views.show_course, name='show_course'),
 
     path("course/<slug:course_name_slug>/post/<slug:slug>", views.post, name="post"),
