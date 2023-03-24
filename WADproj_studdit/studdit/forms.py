@@ -11,7 +11,6 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ('username', 'password', 'email',)
 
-# agreed to leaving out courseForm as courses can be added manually (by admin)
 class PostForm(forms.ModelForm):
 
     title = forms.CharField(max_length=32)
@@ -19,14 +18,18 @@ class PostForm(forms.ModelForm):
     filename = forms.CharField(max_length=128, widget=forms.HiddenInput())
     file = forms.FileField()
 
-    #slug = forms.CharField(widget=forms.HiddenInput(), required=False)
-    
-    # wasnt sure what other fields to include, dont know if 
-    # necessary to include upvoted_by or downvoted_by and not 
-
     class Meta:
         model = Post
         fields = ("title", "description", "file", "filename")
+
+class CourseForm(forms.ModelForm):
+
+    code = forms.CharField(max_length=32)
+    title = forms.CharField(max_length=1024*10)
+
+    class Meta:
+        model = Course
+        fields = ("code", "title")
 
 
 class CommentForm(forms.ModelForm):
