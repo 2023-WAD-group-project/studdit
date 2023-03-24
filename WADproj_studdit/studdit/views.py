@@ -8,7 +8,7 @@ from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from studdit.forms import PostForm, UserForm, CommentForm
+from studdit.forms import PostForm, CourseForm, UserForm, CommentForm
 
 import os
 import re
@@ -313,6 +313,9 @@ def register(request):
 
                 student = Student.objects.get_or_create(user=user)
 
+                login(request, user)
+                print(f"successful log in: {user.username}")
+
                 return redirect(reverse("profile"))
             messages.error(request, 'Invalid email - use a UofG email address.')
 
@@ -329,13 +332,18 @@ def log_out(request):
 @login_required
 def change_username(request):
     if request.method == 'POST':
-        request.user.username = request.POST.get("username")
-        request.user.save()
+        try:
+            request.user.username = request.POST.get("username")
+            request.user.save()
+        except:
+            pass
+
 
     return redirect(reverse('profile'))
 
 @login_required
 def change_password(request):
+    
     if request.method == 'POST':
         if request.POST.get("newpass") == request.POST.get("newpass_confirm"):
             request.user.set_password(request.POST.get("newpass"))
@@ -348,6 +356,15 @@ def delete_account(request):
     request.user.delete()
     return redirect(reverse('login'))
 
+@login_required
+def request_course(request):
+    if request.method == 'POST':
+        form = CourseForm(request.POST, request.FILES)
+        if form.is_valid():
+            course = form.save()
 
-
-
+            return redirect(reverse('show_course', kwargs={'course_name_slug': course.code}))
+        else:
+            print("form errors:")
+            print(form.errors)
+    return redirect(request.META['HTTP_REFERER'])
