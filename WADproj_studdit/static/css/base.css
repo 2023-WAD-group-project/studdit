@@ -48,7 +48,6 @@ button {
     border-radius: 15px;
     margin: 1px;
     color: #1E1B18;
-    color: #FFFAFF !important;
 }
 
 button :hover {
