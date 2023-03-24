@@ -24,6 +24,8 @@ urlpatterns = [
 
     path("profile/delete_account", views.delete_account, name="delete_account"),
 
+    path("profile/request_course", views.request_course, name="request_course"),
+
     path('like_post/', views.LikePostView.as_view(), name='like_post'),
 
     path("test", views.test, name="test"),
