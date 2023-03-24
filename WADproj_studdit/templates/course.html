@@ -7,6 +7,11 @@
 
 
 {% block body_block %}
+<div>
+  <button onclick="history.back()">Go Back</button>
+</div>
+
+<hr>
 
 <!-- a div dedicated to holding info from the django template engine, for javascript to use -->
 <div hidden id="template_data" data-get_posts_url="{% url 'API_get_posts' %}" data-course_code="{{ course.code }}"> </div>
