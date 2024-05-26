@@ -1,0 +1,12 @@
+{% load mathfilters %}
+{% for post in posts %}
+<a href="{% url 'post' post.course.code post.slug %}">
+<!-- <a href="/post/{{post.slug}}"> -->
+  <div class="post_card card bg-secondary text-white text-center p-3">
+    {% if "delete" in settings %}<button class="btn-danger float-left" onclick="fetch('{% url 'delete_post' post.course.code post.slug %}'); event.stopPropagation();">DELETE</button>{% endif %}
+    {% if "votes" in settings %}<button class="btn-light float-right" disabled>votes: {{post.upvotes|sub:post.downvotes}}</button>{% endif %}
+   <br />
+   <h3>{{post.title}}</h3>
+  </div>
+</a>
+{% endfor %}

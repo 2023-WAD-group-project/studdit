@@ -3,6 +3,7 @@
 *.DS_Store
 __pycache__/*
 db.sqlite3
+WADproj_studdit/media/**
 *.key
 
 thumbs.db

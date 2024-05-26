@@ -5,27 +5,27 @@
 {% endblock %}
 
 {% block body_block %}
-<div class="jumbotron p-4">
-    <div class="container">
-        <h1 class="jumbotron-heading">Add a Post to {{ course.name }}</h1>
-    </div>
-</div><div class="container">
-    <div class="row">
-        <form role="form" id="post_form" method="post" action="{% url 'add_post' course.slug %}">
-            {% csrf_token %}
-            {% for hidden in form.hidden_fields %}
-                {{ hidden }}
-            {% endfor %}
-            {% for field in form.visible_fields %}
-                {{ field.errors }}
-                {{ field.help_text }}<br />
-                {{ field }}<br />
-                <div class="p-2"></div>
-            {% endfor %}
-            <br />
-            <button class="btn btn-primary" type="submit" name="submit">Add Post</button>
-            <div class="p-5"></div>
-        </form>
-    </div>
-</div>
+
+  <h1>Post A New Resource</h1>
+  <form action="{% url 'add_post' course.code %}" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+    <input type="hidden" id="filename" name="filename" value="" /><br />
+    <label for="fname">Resource Title</label><br />
+    <input type="text" id="resTitle" name="title" value="" /><br />
+    <label for="lname">Resource Description</label><br />
+    <input type="text" id="lname" name="description" value="" /><br /><br />
+    <label for="lname">Resource File</label><br />
+    <input type="file" id="file" name="file" value="File" accept="application/pdf">
+    <br />
+    <br />
+    <br />
+    <input type="submit" value="Post"></button>
+  </form>
+
+  <script>
+  document.getElementById('file').onchange = function () {
+    document.getElementById('filename').value = this.value.replace('C:\\fakepath\\', ' ');
+  };
+</script>
+
 {% endblock %}

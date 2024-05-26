@@ -7,27 +7,19 @@
 
 
 {% block body_block %}
-  COURSE SEARCH: 
-  <input type="search" id="site-search" name="search" placeholder="Search" size="80">
+  <input type="text" id="site-search" name="search" placeholder="Course Search..." size="80">
 
-  <button>Search</button>
+  <button onclick="searchAndUpdateCourses(document.getElementById('site-search').value)">Search</button>
 
   <hr class="solid">
 
   <ul class="list-group">
 
-    <div>
-      {% for course in courses %}
-      <a href="/course/{{course.code}}">
-        <div style="border-radius: 25px; background: #A9A9A9		; padding: 20px; width: 270px; height: 180px; float: left;">
-          <h3>{{ course.title }}</h3>
-          <p>{{ course.code }}</p>
-          <p>Existing Materials: xx</p>
-          <p>Total Likes in This Course: xxxx</p>
-        </div>
-      </a>
-      {% endfor %}
+    <div class="card-columns" id="courses_div">
     </div>
 
-  
+{% endblock %}
+
+{% block extra_js_block %}
+  <script src="{% static 'js/home.js' %}" > </script>
 {% endblock %}

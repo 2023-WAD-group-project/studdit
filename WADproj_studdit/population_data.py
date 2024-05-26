@@ -4,9 +4,15 @@ comp_y1 = [
         "title": "Computing Science 1P (Standard Route)",
         "posts": [
             {
-                "title": "anaconda install file",
-                "filename": "anaconda.exe",
-                "description": "this is the installation file for anaconda"
+                "title": "anaconda install guide",
+                "filename": "anaconda_inst.txt",
+                "description": "this is a text file containing isntructions to guide you through the installation of anaconda"
+            },
+            {
+                "title": "anaconda uninstall guide",
+                "filename": "anaconda_uninst.txt",
+                "description": "this is a text file containing isntructions to guide you through the uninstallation of anaconda",
+                "author": 1
             }
         ]
     },
@@ -228,8 +234,17 @@ comp_y2 = [
         "posts": [
             {
                 "title": "Rango book",
-                "filename": "rango.pdf",
-                "description": "this is the ebook for rango"
+                "filename": "(TWD e-book) twd-uog-lib-2021-01-07.pdf",
+                "description": "this is the ebook for rango",
+                "author": 1,
+                "downvotes": [0],
+                "comments": [(1, "not sure why this post is here, it's already available on moodle")]
+            },
+            {
+                "title": "rango image",
+                "filename": "rango.jpg",
+                "description": "the url for the home page for sigma16",
+                "author": 1
             }
         ]
     },
@@ -260,9 +275,9 @@ comp_y2 = [
         "title": "Networks and Operating Systems Essentials 2",
         "posts": [
             {
-                "title": "",
-                "filename": "",
-                "description": ""
+                "title": "AE2 report for example",
+                "filename": "example AE2.pdf",
+                "description": "the exported pdf for a submission for network & operating systems assessed exercise 2"
             }
         ]
     },
@@ -1064,9 +1079,11 @@ phys_y2 = [
         "title": "Physics 2T: Programming Under Linux ",
         "posts": [
             {
-                "title": "Phys2T scripting guide",
-                "filename": "guide.pdf",
-                "description": "this is the bash scripting guide containing good practice for bash scripting"
+                "title": "Phys2T bash scripting guide",
+                "filename": "BashScriptingGuide.pdf",
+                "description": "this is the bash scripting guide containing good practice for bash scripting",
+                "upvotes": [0],
+                "comments": [(1, "note that this is also available on the moodle page")]
             }
         ]
     },
@@ -1083,11 +1100,13 @@ phys_y2 = [
     }
 ]
 
-
-courses = comp_y1 + comp_y2 + eng_y1 + eng_y2 + phys_y1 + phys_y2
+courses = comp_y1+comp_y2+eng_y1+eng_y2+phys_y1+phys_y2
 
 for i in range(len(courses)):
     if courses[i]["posts"][0]["filename"] == "":
         courses[i]["posts"] = []
 
-#print(courses)
+courses.sort(key= lambda c: len(c["posts"]), reverse=True)
+
+if __name__ == "__main__":
+    print(courses)

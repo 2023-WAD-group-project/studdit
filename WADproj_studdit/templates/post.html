@@ -1,69 +1,56 @@
 {% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-
-
-
 
 
 {% block title_block %}
-
     Post
 {% endblock %}
 
-{%block extra_head_block %}
-    <script src="{% static 'test.js' %}"></script>
-    <link rel="stylesheet" href="{% static "css/post.css" %}" />
-    <!-- <style> body { background-color: green; } </style> -->
+{% block body_block %}
+
+<div>
+  <button onclick="history.back()">Go Back</button>
+</div>
+
+<hr>
+
+<div class = "container-fluid">
+
+  <embed src="{% get_media_prefix %}{{post.course.code}}/{{post.filename}}" height="700" width="100%">
+
+  <div class="well">
+    <h2 class="d-inline" > {{post.title}} </h2>
+    <div class="float-right">
+      <button  disabled>votes:<p class="float-right" id="votes">{{votes}}</p></button>
+      <button class="{{colourLiked}}" id="upvote" data-postid="{{ post.id }}" data-liked="{{liked}}" data-username="{{ user.id }}" type = "button">+</button>
+      <button class="{{colourDisliked}}" id="downvote" data-postid="{{ post.id }}" data-disliked="{{disliked}}">−</button>
+    </div>
+  </h2>
+  <h3> {{post.description}} </h3>
+  </div>
+
+  <hr class="solid bg-light"></hr>
+
+  <div class="well">
+    <form action="{% url 'comment' post.course.code post.slug %}" method="post">
+      {% csrf_token %}
+      <button id='comment' data-postid="{{ post.id }}" data-username="{{ user.id }}">Add Comment</button>
+      <input type="search" id="post-comment" name="content" placeholder="comment..." >
+    </form>
+  </div>
+
+  {% if comment %}
+  <div class="scroll w-100">
+        {% for c in comment %}
+        <li class="list-group-item mb-1" id="comments">{{c.date}} {{c.student.user.username}} says: {{c.content}}</li>
+        {% endfor %}
+  </div>
+  {% endif %}
+
+</div>
 {% endblock %}
 
 
-{% block body_block %}
-<div class = "container-fluid">
-  
-  <embed src="{% static "images/joo.pdf" %}" type="application/pdf"   height="500" width="100%" >
-  <div class="well">
-    
-    <h2> POST TITLE 
-      
-    
-      
-    <button  disabled>votes:<p class="float-right" id="votes">{{post.id}}</p></button>
-    <button id="upvote" data-postid="{{ post.id }}"  style="width:30px;" type = "button">+ </button><button id="downvote" style="width:30px;" data-postid="{{ post.id }}">− </button>
-    
-
-    
-    </h2>
-  </h2>
-  <h3>
-    Some stuff about the post will go here.  Some stuff about the post will go here.  Some stuff about the post will go here.  Some stuff about the post will go here.
-    
-    
-    
-
-  </h3>
-  </div>
-
-  <hr class="solid">
-
-  <div class="well">
-    <input type="search" id="site-search" name="search" placeholder="comment..." size="165">
-
-  <button class="float-right">comment</button>
-
-  <div class = "scroll">
-    
-    <ul class="list-group">
-      {% for i in '123456789'|make_list %}
-      
-      <li class="list-group-item">username{{i}} says:  he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says that he says<button class = "float-right" id="minus2" style="width:30px;">− </button><button class = "float-right" id="plus2" style="width:30px;">+ </button></li>
-      
-      {% endfor %}
-    </ul>
-    
-  </div>
-
-</div>
-
-
+{% block extra_js_block %}
+  <script src="{% static 'js/post.js' %}" > </script>
 {% endblock %}

@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="generator" content="Jekyll v3.8.5">
-    <link rel="icon" href="{% static 'images/favicon.ico' %}">
     <title>
       Login to Studdit
     </title>
@@ -17,56 +16,78 @@
     
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/4.2/examples/dashboard/dashboard.css" rel="stylesheet">
+    <link href="/static/css/base.css" rel="stylesheet">
     </head>
-    <body style="text-align:center">
-      <div class="header bg-dark m-0 p-0">
-        <h1 class="h1 text-white" >Studdit</h2>
+    <body class="text-center">
+      <div class="header m-0 p-0 w-100">
+        <h1 class="h1" >Studdit</h2>
       </div>
       <div class="container mt-100">
         <div class="row">
           <div class="col p-3" ;>
-            <div class="card bg-secondary text-white border-10 ">
-              <form>
+            <div class="card bg-secondary text-white border-10">
+              <form action="/user_login" method="post">
+                {% csrf_token %}
                 <h2 class="h2 mb-3  fw-normal">Sign In</h2>
                 <div class="form-floating">
-                  <label for="floatingInput">Email address</label>
-                  <input type="email" class="form-control" id="floatingInput" placeholder="guid@student.gla.ac.uk">
+                  <label for="floatingInput">username</label>
+                  <input type="text" name="username" class="form-control" id="floatingInput" placeholder="username">
                 </div>
                 <div class="form-floating">
                   <label for="floatingPassword">Password</label>
-                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                  <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
                 </div>
                 <div class="checkbox mb-3">
                   <label>
-                    <input type="checkbox" value="remember-me"> Remember me
                   </label>
                 </div>
-                <button class="btn-primary w-100" type="submit">Sign In</button>
+                <button class="btn-primary" type="submit">Sign In</button>
               </form>
             </div>
           </div>
           <div class="col p-3" ;>
             <div class="card bg-secondary text-white border-10 ">
-              <form >
+              <form action="/register" method="post">
+                {% csrf_token %}
                 <h2 class="h2 mb-3  fw-normal">Sign Up</h2>
                 <div class="form-floating">
                   <label for="floatingInput">Email address</label>
-                  <input type="email" class="form-control" id="floatingInput" placeholder="guid@student.gla.ac.uk">
+                  <input type="email" name="email" class="form-control" id="floatingInput" placeholder="guid@student.gla.ac.uk">
+                </div>
+                <div class="form-floating">
+                  <label for="floatingPassword">username</label>
+                  <input type="text" name="username"  class="form-control" id="floatingPassword" placeholder="Username">
                 </div>
                 <div class="form-floating">
                   <label for="floatingPassword">Password</label>
-                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                  <input type="password" name="password"  class="form-control" id="floatingPassword" placeholder="Password">
                 </div>
                 <div class="checkbox mb-3">
                   <label>
-                    <input type="checkbox" value="remember-me"> Remember me
                   </label>
                 </div>
-                  <button class="btn-primary w-100" type="submit">Sign Up</button>
+                  <button class="btn-primary" type="submit">Sign Up</button>
+
+
               </form>  
             </div>
           </div> 
         </div>
       </div>
+      <div id="page-container">
+        <div id="content-wrap">
+          <!-- all other page content -->
+        </div>
+        <footer class="font_weight_bold" style="list-style-type: none;">
+          {% if messages %}
+          <ul class="messages">
+              {% for message in messages %}
+                  <b><li style="font-size:20px;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li></b>
+              {% endfor %}
+          </ul>
+      {% endif %}
+      </footer>
+      </div>
     </body>
+    
 </html>

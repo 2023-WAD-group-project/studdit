@@ -1,0 +1,143 @@
+body {
+    margin:0;
+    font-family: 'Prompt', sans-serif;
+    color: #FFFAFF;
+    background-color: #1E1B18;
+}
+
+h1 {
+    font-family:'Prompt', sans-serif;
+}
+
+.header {
+    background-color: #0A2463;
+    width: 100%
+}
+
+.h1 {
+    background-color: #0A2463;
+    width: 100%
+}
+
+a:link {
+    color: #FFFAFF !important; 
+}
+
+input[type=submit] {
+    background-color: #D8315B !important;
+    font-size: 18px;
+    padding: 8px;
+    border: 1px solid #D8315B;
+    border-radius: 15px;
+    margin: 1px;
+}
+
+.sidebar-sticky {
+    background-color: #1E1B18;
+}
+
+.navbar {
+    background-color: #0A2463;
+}
+
+button {
+    background-color: #D8315B;
+    font-size: 18px;
+    padding: 8px;
+    border: 1px solid #D8315B;
+    border-radius: 15px;
+    margin: 1px;
+    color: #1E1B18;
+}
+
+button :hover {
+    background-color: #CE2751 !important;
+    color: #FFFAFF !important;
+}
+
+.footer {
+    /* margin-top: auto; */
+    background-color: #D8315B;
+    padding: 10px;
+    bottom: 0;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+
+.course_card, .post_card {
+    background-color: #3E92CC !important; 
+    margin: 7px;
+}
+
+#site-search {
+    font-size: 18px;
+    padding: 8px;
+    border: 1px solid #FFFAFF;
+    border-radius: 15px;
+    margin: 1px;
+}
+
+.form-floating{
+    margin: 7px;
+    
+}
+
+.btn-primary{
+    margin: 7px;
+    width: 500px;
+}
+
+.checkbox {
+    accent-color: #D8315B;
+}
+
+#comments {
+    color: black;
+    font-size: 16px;
+    padding: 8px;
+    border: 1px solid #FFFAFF;
+    border-radius: 15px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    word-wrap: break-word;
+}
+
+#post-comment{
+    width: 89%;
+    float: right;
+    font-size: 16px;
+    padding: 8px;
+    border: 1px solid #FFFAFF;
+    border-radius: 15px;
+    margin: 1px;
+    
+}
+#comment{
+    width: 10%;
+    font-size: 16px;
+    padding: 8px;
+}
+#plus2{
+    padding: 0px;
+    width:30px;
+}
+#minus2{
+    padding: 0px;
+    width:30px;
+
+}
+
+.scroll {
+    height: 200px;
+    overflow: scroll;
+    float: right; 
+    width: 92.3%;
+    
+}
+#upvote{
+    border: 2px solid grey; color: white;width:30px; padding: 4px;
+}
+#downvote{
+    border: 2px solid grey; color: white; width: 30px; padding: 4px;
+}

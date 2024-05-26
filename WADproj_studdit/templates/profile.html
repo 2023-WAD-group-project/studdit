@@ -5,12 +5,10 @@
     Profile
 {% endblock %}
 
-{%block extra_head_block %}
-    <link rel="stylesheet" href="{% static "css/profile.css" %}" />
-    <!-- <style> body { background-color: green; } </style> -->
-{% endblock %}
-
 {% block body_block %}
+
+<!-- a div dedicated to holding info from the django template engine, for javascript to use -->
+<div hidden id="template_data" data-get_posts_url="{% url 'API_get_posts' %}" data-user_username="{{ user.username }}"> </div>
 
 <div class="container-fluid">
 
@@ -19,71 +17,77 @@
 
       <div class="row">
         <div class="col">
-          <div class="row border h-50">
+          <div class="row h-50">
             <h4>account username:</h4>
-            <h4>nam</h4>
+            <h4>{{ user.username }}</h4>
           </div>
-          <div class="row border h-50">
+          <div class="row h-50">
             <h4>account email:</h4>
-            <h4>1234567B@student.gla.ac.uk</h4>
+            <h4>{{ user.email }}</h4>
           </div>
         </div>
-        <div class="col-  border">
-          <form>
+        <div class="col- ">
+          <form action="{% url 'change_username' %}" method="post">
+          {% csrf_token %}
             <h3>CHANGE USERNAME</h3>
             <h4>desired username:</h4>
-            <input type="text" class="form-control" id="username" placeholder="username" required="">
-            <button class="btn-primary w-100" type="submit">change</button>
+              <input type="text" class="form-control" name="username" placeholder="username" required="true">
+              <button class="btn-primary w-100" type="submit">change</button>
           </form>
         </div>
       </div>
       <br />
+
       <div class="row">
-        <div class="col border">
-          <form>
+        <div class="col">
+          <form action="{% url 'change_password' %}" method="post">
+            {% csrf_token %}
             <h3>CHANGE PASSWORD</h3>
             <div class="row">
               <div class="col">
-                <h4>previous password:</h4>
-                <input type="text" class="form-control" id="username" placeholder="********" required="">
+                <h4>desired password:</h4>
+                <input type="password" class="form-control" name="newpass" placeholder="********" required="true">
               </div>
               <div class="col">
-                <h4>new password:</h4>
-                <input type="text" class="form-control" id="username" placeholder="********" required="">
+                <h4>confirm password:</h4>
+                <input type="password" class="form-control" name="newpass_confirm" placeholder="********" required="true">
               </div>
             </div>
             <br />
             <button class="btn-primary w-100" type="submit">change</button>
           </form>
         </div>
-        <div class="col border">
-          <form>
+
+        <div class="col">
+          <form action="{% url 'request_course' %}" method="post">
+            {% csrf_token %}
             <h3>REQUEST A NEW COURSE PAGE</h3>
-              <div class="row">
-                <div class="col">
-                  <h4>course code:</h4>
-                  <input type="text" class="form-control" id="username" placeholder="COMPSCI1001" required="">
-                </div>
-                <div class="col">
-                  <h4>course title:</h4>
-                  <input type="text" class="form-control" id="username" placeholder="computing science 1P" required="">
-                </div>
+            <div class="row">
+              <div class="col">
+                <h4>course code:</h4>
+                <input type="text" class="form-control" name="code" placeholder="COMPSCI1001" required="true">
               </div>
-              <br />
-              <button class="btn-primary w-100" type="submit">request</button>
+              <div class="col">
+                <h4>course title:</h4>
+                <input type="text" class="form-control" name="title" placeholder="computing science 1P" required="true">
+              </div>
+            </div>
+            <br />
+            <button class="btn-primary w-100" type="submit">request</button>
           </form>
         </div>
       </div>
 
       <br />
 
-      <form class="row border">
+      <form class="row" action="{% url 'delete_account' %}" method="post">
+        {% csrf_token %}
         <div class="col-">
-          <button class="btn-danger" type="submit" style="display: inline">DELETE<br />ACCOUNT</button>
+          <button class="btn-danger d-inline" type="submit">DELETE<br />ACCOUNT</button>
         </div>
         <div class="col">
-          <p style="display: inline">DISCLAIMER: deleting your account will ireversably delete your comments, posts, username, email, and encrypted password from out database.</p>
-          <p style="display: inline; color: red">they will not be recoverable.</p>
+          <p class="d-inline">DISCLAIMER: deleting your account will ireversably delete your comments, posts, username, email, and encrypted password from out database.</p>
+          <p class="text-danger d-inline">they will not be recoverable.</p>
         </div>
       </form>
 
@@ -95,19 +99,13 @@
   <div class="row">
     <div class="container px-0">
       <h3>my posts:</h3>
-      <div class="card-columns">
-      {% for i in '0123456789'|make_list %} {# TODO: change this for loop to be for course in courses (when the course database actually exists) #}
-        <div class="card bg-secondary text-white text-center p-3">
-          <button class="btn-danger float-left">DELETE</button>
-          <button class="btn-light float-right" disabled>votes: xx</button>
-          <br />
-          <h3>a typically very long post title</h3>
-        </div>
-      {% endfor %}
-      </div>
+      <div id="posts_div" class="card-columns" > </div>
     </div>
   </div>
 </div>
 
+{% endblock %}
 
+{% block extra_js_block %}
+  <script src="{% static 'js/profile.js' %}" > </script>
 {% endblock %}

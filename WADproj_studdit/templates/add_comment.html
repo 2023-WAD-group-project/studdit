@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title_block %}
+    Course
+{% endblock %}
+
+
+{% block body_block %}
+
+<div class="container-fluid h-100">
+  <div class="row">
+    <div class="col-"><h1>{{course.title}}</h1></div>
+    <div class="col-">
+      <input type="text" id="site-search" name="search" placeholder="Post Search..." /><button>Search</button>
+      <a href="add_post/"><button>Add Post</button></a>
+    <!-- <div class="col">
+      <input class="form-check-input" type="checkbox" id="titleCheck" name="Title" value="test" />
+      <label class="form-check-label" >Title</label>
+    </div>
+    <div class="col">
+      <input class="form-check-input" type="checkbox" id="desCheck" name="Description" value="test" />
+      <label class="form-check-label" >Description</label>
+    </div> -->
+  </div>
+
+  <hr class="row">
+
+  <!-- Post list section -->
+
+  <div class="row">
+    <ul class="list-group">
+      <div class="card-columns" id="posts_div">
+        <script>
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("posts_div").innerHTML = this.responseText;
+            console.log(this.responseText)
+            }
+          };
+          xhttp.open("GET", "/get_posts?format=xml&course={{course.code}}&xml_fields[]=votes", true);
+          xhttp.send();
+        </script>
+      </div>
+    </ul>
+  </div>
+  
+</div>
+
+{% endblock %}
