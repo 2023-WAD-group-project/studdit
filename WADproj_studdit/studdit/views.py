@@ -24,7 +24,13 @@ def course(request):
     return render(request, "course.html", context=context_dict)
 
 def post(request):
+    post = Post.objects.get(slug=slug)
+
+    
     context_dict = {}
+    context_dict['post'] = post
+    
+    
     return render(request, "post.html", context=context_dict)
 
 def login(request):
